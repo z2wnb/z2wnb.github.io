@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    2019消费者人群画像—信用智能评分竞赛 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/logo.png" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Z2WNB" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-2019消费者人群画像—信用智能评分竞赛"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  2019消费者人群画像—信用智能评分竞赛
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/12/2019%E6%B6%88%E8%B4%B9%E8%80%85%E4%BA%BA%E7%BE%A4%E7%94%BB%E5%83%8F%E2%80%94%E4%BF%A1%E7%94%A8%E6%99%BA%E8%83%BD%E8%AF%84%E5%88%86%E7%AB%9E%E8%B5%9B/" class="article-date">
+  <time datetime="2019-03-12T10:39:30.000Z" itemprop="datePublished">2019-03-12</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">4.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">20 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="消费者人群画像—信用智能评分竞赛"><a href="#消费者人群画像—信用智能评分竞赛" class="headerlink" title="消费者人群画像—信用智能评分竞赛"></a>消费者人群画像—信用智能评分竞赛</h1><h2 id="1-比赛介绍"><a href="#1-比赛介绍" class="headerlink" title="1. 比赛介绍"></a>1. 比赛介绍</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.datafountain.cn/competitions/337/details/data-evaluation">https://www.datafountain.cn/competitions/337/details/data-evaluation</a></li>
+</ul>
+<h2 id="2-参考代码"><a href="#2-参考代码" class="headerlink" title="2. 参考代码"></a>2. 参考代码</h2><h3 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedKFold</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</span><br><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> KFold</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> BayesianRidge</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> RepeatedKFold</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line">plt.rcParams[<span class="string">u&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;simhei&#x27;</span>]  <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>  <span class="comment">#用来正常显示负号</span></span><br><span class="line">pd.set_option(<span class="string">&#x27;display.max_columns&#x27;</span>, <span class="number">100</span>)  <span class="comment">#显示最大列数</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Input-data"><a href="#Input-data" class="headerlink" title="Input data"></a>Input data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data_path = <span class="string">&#x27;../input/&#x27;</span></span><br><span class="line">train_data = pd.read_csv(data_path + <span class="string">&#x27;train_dataset.csv&#x27;</span>)</span><br><span class="line">test_data = pd.read_csv(data_path + <span class="string">&#x27;test_dataset.csv&#x27;</span>)</span><br><span class="line">sample_sub = pd.read_csv(data_path + <span class="string">&#x27;submit_example.csv&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pre-processing"><a href="#Pre-processing" class="headerlink" title="Pre-processing"></a>Pre-processing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x_cols = [col <span class="keyword">for</span> col <span class="keyword">in</span> train_data.columns <span class="keyword">if</span> col <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">&#x27;信用分&#x27;</span>,<span class="string">&#x27;用户编码&#x27;</span>]]</span><br><span class="line">labels = []</span><br><span class="line">values = []</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_cols</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;用户实名制是否通过核实&#39;,
+ &#39;用户年龄&#39;,
+ &#39;是否大学生客户&#39;,
+ &#39;是否黑名单客户&#39;,
+ &#39;是否4G不健康客户&#39;,
+ &#39;用户网龄（月）&#39;,
+ &#39;用户最近一次缴费距今时长（月）&#39;,
+ &#39;缴费用户最近一次缴费金额（元）&#39;,
+ &#39;用户近6个月平均消费值（元）&#39;,
+ &#39;用户账单当月总费用（元）&#39;,
+ &#39;用户当月账户余额（元）&#39;,
+ &#39;缴费用户当前是否欠费缴费&#39;,
+ &#39;用户话费敏感度&#39;,
+ &#39;当月通话交往圈人数&#39;,
+ &#39;是否经常逛商场的人&#39;,
+ &#39;近三个月月均商场出现次数&#39;,
+ &#39;当月是否逛过福州仓山万达&#39;,
+ &#39;当月是否到过福州山姆会员店&#39;,
+ &#39;当月是否看电影&#39;,
+ &#39;当月是否景点游览&#39;,
+ &#39;当月是否体育场馆消费&#39;,
+ &#39;当月网购类应用使用次数&#39;,
+ &#39;当月物流快递类应用使用次数&#39;,
+ &#39;当月金融理财类应用使用总次数&#39;,
+ &#39;当月视频播放类应用使用次数&#39;,
+ &#39;当月飞机类应用使用次数&#39;,
+ &#39;当月火车类应用使用次数&#39;,
+ &#39;当月旅游资讯类应用使用次数&#39;]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#判断各列和信用分的相关性</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> x_cols:</span><br><span class="line">    labels.append(col)</span><br><span class="line">    values.append(</span><br><span class="line">        np.corrcoef(train_data[col].values, train_data[<span class="string">&#x27;信用分&#x27;</span>].values)[<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">corr_df = pd.DataFrame(&#123;<span class="string">&#x27;col_labels&#x27;</span>: labels, <span class="string">&#x27;corr_values&#x27;</span>: values&#125;)</span><br><span class="line">corr_df = corr_df.sort_values(by=<span class="string">&#x27;corr_values&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ind = np.arange(len(labels))</span><br><span class="line">width = <span class="number">0.5</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>, <span class="number">60</span>))</span><br><span class="line">rects = ax.barh(ind, np.array(corr_df.corr_values.values), color=<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">ax.set_yticks(ind)</span><br><span class="line">ax.set_yticklabels(corr_df.col_labels.values, rotation=<span class="string">&#x27;horizontal&#x27;</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;Correlation coefficient&#x27;</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;Correlation coeficient of the variables&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Text(0.5,1,&#39;Correlation coeficient of the variables&#39;)</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g107dg69uvj30ng2k5myw.jpg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#密度曲线</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_kde</span>(<span class="params">data</span>):</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">    data.plot(kind=<span class="string">&#x27;kde&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_his</span>(<span class="params">data</span>):</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">    sns.distplot(data.values, bins=<span class="number">50</span>, kde=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plot_kde(train_data[<span class="string">&#x27;信用分&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g107dg3uy3j30e409zdfw.jpg"></p>
+<h3 id="Feature-Engineering"><a href="#Feature-Engineering" class="headerlink" title="Feature Engineering"></a>Feature Engineering</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top up amount, 充值金额是整数，和小数，应该对应不同的充值途径？</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">produce_offline_feature</span>(<span class="params">train_data</span>):</span></span><br><span class="line">    train_data[<span class="string">&#x27;不同充值途径&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    train_data[<span class="string">&#x27;不同充值途径&#x27;</span>][(train_data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] %</span><br><span class="line">                          <span class="number">10</span> == <span class="number">0</span>) &amp; train_data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] != <span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> train_data</span><br><span class="line">train_data = produce_offline_feature(train_data)</span><br><span class="line">test_data = produce_offline_feature(test_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看importance，当月话费 和最近半年平均话费都很高，算一下当月/半年 --&gt;稳定性</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">produce_fee_rate</span>(<span class="params">train_data</span>):</span></span><br><span class="line">    train_data[<span class="string">&#x27;当前费用稳定性&#x27;</span>] = train_data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] / \</span><br><span class="line">        (train_data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>] + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 当月话费/当月账户余额</span></span><br><span class="line">    train_data[<span class="string">&#x27;用户余额比例&#x27;</span>] = train_data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] / \</span><br><span class="line">        (train_data[<span class="string">&#x27;用户当月账户余额（元）&#x27;</span>] + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> train_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_data = produce_offline_feature(train_data)</span><br><span class="line">test_data = produce_offline_feature(test_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取特征</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_features</span>(<span class="params">data</span>):</span></span><br><span class="line"></span><br><span class="line">    data.loc[data[<span class="string">&#x27;用户年龄&#x27;</span>] ==</span><br><span class="line">             <span class="number">0</span>, <span class="string">&#x27;用户年龄&#x27;</span>] = data[<span class="string">&#x27;用户年龄&#x27;</span>].mode()  <span class="comment"># mode()选出一组数据中众数，这里改为平均值</span></span><br><span class="line">    data.loc[data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] ==</span><br><span class="line">             <span class="number">0</span>, <span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] = data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>].mode()</span><br><span class="line">    data[<span class="string">&#x27;缴费金额是否能覆盖当月账单&#x27;</span>] = data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] - data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;最近一次缴费是否超过平均消费额&#x27;</span>] = data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] - data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;当月账单是否超过平均消费额&#x27;</span>] = data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] - data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 映射年龄</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">map_age</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">if</span> x &lt;= <span class="number">18</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">30</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">35</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">45</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">    data[<span class="string">&#x27;是否大学生_黑名单&#x27;</span>] = data[<span class="string">&#x27;是否大学生客户&#x27;</span>] + data[<span class="string">&#x27;是否黑名单客户&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否实名制_大学生&#x27;</span>] = data[<span class="string">&#x27;是否大学生客户&#x27;</span>] + data[<span class="string">&#x27;用户实名制是否通过核实&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否实名制_大学生_黑名单&#x27;</span>] = data[<span class="string">&#x27;是否黑名单客户&#x27;</span>] + data[<span class="string">&#x27;用户实名制是否通过核实&#x27;</span>] + data[<span class="string">&#x27;是否大学生客户&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否实名制_黑名单&#x27;</span>] = data[<span class="string">&#x27;是否黑名单客户&#x27;</span>] + data[<span class="string">&#x27;用户实名制是否通过核实&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] = data[<span class="string">&#x27;当月是否到过福州山姆会员店&#x27;</span>] + data[<span class="string">&#x27;当月是否逛过福州仓山万达&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>].map(<span class="keyword">lambda</span> x: <span class="number">1</span> <span class="keyword">if</span> x &gt;= <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_电影&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_体育馆&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_旅游&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_电影_体育馆&#x27;</span>] = data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_旅游_体育馆&#x27;</span>] = data[<span class="string">&#x27;当月是否景点游览&#x27;</span>] * data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    data[<span class="string">&#x27;是否_商场_旅游_体育馆&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>] * data[</span><br><span class="line">        <span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_电影_体育馆&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[</span><br><span class="line">        <span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_体育馆_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[</span><br><span class="line">        <span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_体育馆_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * \</span><br><span class="line">        data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    discretize_features = [</span><br><span class="line">        <span class="string">&#x27;交通类应用使用次数&#x27;</span>, <span class="string">&#x27;当月物流快递类应用使用次数&#x27;</span>, <span class="string">&#x27;当月飞机类应用使用次数&#x27;</span>, <span class="string">&#x27;当月火车类应用使用次数&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;当月旅游资讯类应用使用次数&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    data[<span class="string">&#x27;交通类应用使用次数&#x27;</span>] = data[<span class="string">&#x27;当月飞机类应用使用次数&#x27;</span>] + data[<span class="string">&#x27;当月火车类应用使用次数&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    data[<span class="string">&#x27;6个月平均占比总费用&#x27;</span>] = data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>] / data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">map_discretize</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">5</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">15</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">50</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> discretize_features[:]:</span><br><span class="line">        data[col] = data[col].map(<span class="keyword">lambda</span> x: map_discretize(x))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_data = get_features(train_data)</span><br><span class="line">test_data = get_features(test_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">base_process</span>(<span class="params">data</span>):</span></span><br><span class="line">    transform_value_feature = [</span><br><span class="line">        <span class="string">&#x27;用户年龄&#x27;</span>, <span class="string">&#x27;用户网龄（月）&#x27;</span>, <span class="string">&#x27;当月通话交往圈人数&#x27;</span>, <span class="string">&#x27;近三个月月均商场出现次数&#x27;</span>, <span class="string">&#x27;当月网购类应用使用次数&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;当月物流快递类应用使用次数&#x27;</span>, <span class="string">&#x27;当月金融理财类应用使用总次数&#x27;</span>, <span class="string">&#x27;当月视频播放类应用使用次数&#x27;</span>, <span class="string">&#x27;当月飞机类应用使用次数&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;当月火车类应用使用次数&#x27;</span>, <span class="string">&#x27;当月旅游资讯类应用使用次数&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    user_fea = [</span><br><span class="line">        <span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>, <span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>, <span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>, <span class="string">&#x27;用户当月账户余额（元）&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    log_features = [</span><br><span class="line">        <span class="string">&#x27;当月网购类应用使用次数&#x27;</span>, <span class="string">&#x27;当月金融理财类应用使用总次数&#x27;</span>, <span class="string">&#x27;当月物流快递类应用使用次数&#x27;</span>, <span class="string">&#x27;当月视频播放类应用使用次数&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="comment">#处理离散点</span></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> transform_value_feature + user_fea + log_features:</span><br><span class="line">        <span class="comment">#取出最高99.9%值</span></span><br><span class="line">        ulimit = np.percentile(train_data[col].values, <span class="number">99.9</span>)</span><br><span class="line">        <span class="comment">#取出最低0.1%值</span></span><br><span class="line">        llimit = np.percentile(train_data[col].values, <span class="number">0.1</span>)</span><br><span class="line">        train_data.loc[train_data[col] &gt; ulimit, col] = ulimit</span><br><span class="line">        train_data.loc[train_data[col] &lt; llimit, col] = llimit</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> user_fea + log_features:</span><br><span class="line">        data[col] = data[col].map(<span class="keyword">lambda</span> x: np.log1p(x))</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_data = base_process(train_data)</span><br><span class="line">test_data = base_process(test_data)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_importances</span>(<span class="params">feature_importance_df_</span>):</span></span><br><span class="line">    cols = feature_importance_df_[[</span><br><span class="line">        <span class="string">&quot;feature&quot;</span>, <span class="string">&quot;importance&quot;</span></span><br><span class="line">    ]].groupby(<span class="string">&quot;feature&quot;</span>).mean().sort_values(</span><br><span class="line">        by=<span class="string">&quot;importance&quot;</span>, ascending=<span class="literal">False</span>)[:<span class="number">40</span>].index</span><br><span class="line">    best_features = feature_importance_df_.loc[</span><br><span class="line">        feature_importance_df_.feature.isin(cols)]</span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>, <span class="number">10</span>))</span><br><span class="line">    sns.barplot(</span><br><span class="line">        x=<span class="string">&quot;importance&quot;</span>,</span><br><span class="line">        y=<span class="string">&quot;feature&quot;</span>,</span><br><span class="line">        data=best_features.sort_values(by=<span class="string">&quot;importance&quot;</span>, ascending=<span class="literal">False</span>))</span><br><span class="line">    plt.title(<span class="string">&#x27;LightGBM Features (avg over folds)&#x27;</span>)</span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#para</span></span><br><span class="line">params1 = &#123;</span><br><span class="line">    <span class="string">&#x27;learning_rate&#x27;</span>: <span class="number">0.01</span>,</span><br><span class="line">    <span class="string">&#x27;boosting_type&#x27;</span>: <span class="string">&#x27;gbdt&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;regression_l1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;metric&#x27;</span>: <span class="string">&#x27;mae&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;feature_fraction&#x27;</span>: <span class="number">0.6</span>,  <span class="comment">#如果设置为 0.8, 将会在每棵树训练之前选择 80% 的特征</span></span><br><span class="line">    <span class="string">&#x27;bagging_fraction&#x27;</span>: <span class="number">0.8</span>,  <span class="comment"># 它将在不进行重采样的情况下随机选择部分数据</span></span><br><span class="line">    <span class="string">&#x27;bagging_freq&#x27;</span>: <span class="number">2</span>,  <span class="comment">#意味着每2次迭代执行bagging</span></span><br><span class="line">    <span class="string">&#x27;num_leaves&#x27;</span>: <span class="number">31</span>,</span><br><span class="line">    <span class="string">&#x27;verbose&#x27;</span>: <span class="number">-1</span>,</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l2&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l1&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;num_thread&#x27;</span>: <span class="number">8</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#para</span></span><br><span class="line">params2 = &#123;</span><br><span class="line">    <span class="string">&#x27;learning_rate&#x27;</span>: <span class="number">0.01</span>,</span><br><span class="line">    <span class="string">&#x27;boosting_type&#x27;</span>: <span class="string">&#x27;gbdt&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;regression_l2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;metric&#x27;</span>: <span class="string">&#x27;mae&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;feature_fraction&#x27;</span>: <span class="number">0.6</span>,  <span class="comment">#如果设置为 0.8, 将会在每棵树训练之前选择 80% 的特征</span></span><br><span class="line">    <span class="string">&#x27;bagging_fraction&#x27;</span>: <span class="number">0.8</span>,  <span class="comment"># 它将在不进行重采样的情况下随机选择部分数据</span></span><br><span class="line">    <span class="string">&#x27;bagging_freq&#x27;</span>: <span class="number">2</span>,  <span class="comment">#意味着每2次迭代执行bagging</span></span><br><span class="line">    <span class="string">&#x27;num_leaves&#x27;</span>: <span class="number">31</span>,</span><br><span class="line">    <span class="string">&#x27;verbose&#x27;</span>: <span class="number">-1</span>,</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l2&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l1&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;num_thread&#x27;</span>: <span class="number">8</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">cv_pred_all1 = <span class="number">0</span></span><br><span class="line">en_amount = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">oof_lgb1 = np.zeros(len(train_data))</span><br><span class="line">prediction_lgb1 = np.zeros(len(test_data))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> seed <span class="keyword">in</span> range(en_amount):</span><br><span class="line">    NFOLDS = <span class="number">5</span></span><br><span class="line">    train_label = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    kfold = KFold(n_splits=NFOLDS, shuffle=<span class="literal">True</span>, random_state=seed)</span><br><span class="line">    kf = kfold.split(train_data, train_label)</span><br><span class="line"></span><br><span class="line">    train_data_use = train_data.drop([<span class="string">&#x27;用户编码&#x27;</span>, <span class="string">&#x27;信用分&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">    test_data_use = test_data.drop([<span class="string">&#x27;用户编码&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv_pred = np.zeros(test_data.shape[<span class="number">0</span>])</span><br><span class="line">    valid_best_l2_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    feature_importance_df = pd.DataFrame()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, (train_fold, validate) <span class="keyword">in</span> enumerate(kf):</span><br><span class="line">        print(<span class="string">&#x27;fold: &#x27;</span>, i, <span class="string">&#x27; training&#x27;</span>)</span><br><span class="line">        X_train, X_validate, label_train, label_validate = \</span><br><span class="line">        train_data_use.iloc[train_fold, :], train_data_use.iloc[validate, :], \</span><br><span class="line">        train_label[train_fold], train_label[validate]</span><br><span class="line">        dtrain = lgb.Dataset(X_train, label_train)</span><br><span class="line">        dvalid = lgb.Dataset(X_validate, label_validate, reference=dtrain)</span><br><span class="line">        bst = lgb.train(</span><br><span class="line">            params1,</span><br><span class="line">            dtrain,</span><br><span class="line">            num_boost_round=<span class="number">10000</span>,</span><br><span class="line">            valid_sets=dvalid,</span><br><span class="line">            verbose_eval=<span class="number">-1</span>,</span><br><span class="line">            early_stopping_rounds=<span class="number">250</span>)</span><br><span class="line">        cv_pred += bst.predict(test_data_use, num_iteration=bst.best_iteration)</span><br><span class="line">        valid_best_l2_all += bst.best_score[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;l1&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        oof_lgb1[validate] = bst.predict(</span><br><span class="line">            X_validate, num_iteration=bst.best_iteration)</span><br><span class="line">        prediction_lgb1 += bst.predict(</span><br><span class="line">            test_data_use, num_iteration=bst.best_iteration) / kfold.n_splits</span><br><span class="line"></span><br><span class="line">        fold_importance_df = pd.DataFrame()</span><br><span class="line">        fold_importance_df[<span class="string">&quot;feature&quot;</span>] = list(X_train.columns)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;importance&quot;</span>] = bst.feature_importance(</span><br><span class="line">            importance_type=<span class="string">&#x27;split&#x27;</span>, iteration=bst.best_iteration)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;fold&quot;</span>] = count + <span class="number">1</span></span><br><span class="line">        feature_importance_df = pd.concat(</span><br><span class="line">            [feature_importance_df, fold_importance_df], axis=<span class="number">0</span>)</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv_pred /= NFOLDS</span><br><span class="line">    valid_best_l2_all /= NFOLDS</span><br><span class="line"></span><br><span class="line">    cv_pred_all1 += cv_pred</span><br><span class="line">cv_pred_all1 /= en_amount</span><br><span class="line">prediction_lgb1 /= en_amount</span><br><span class="line">print(<span class="string">&#x27;cv score1 for valid is: &#x27;</span>, <span class="number">1</span> / (<span class="number">1</span> + valid_best_l2_all))</span><br></pre></td></tr></table></figure>
+
+<pre><code>fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3874]    valid_0&#39;s l1: 14.7271
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3908]    valid_0&#39;s l1: 14.7613
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3308]    valid_0&#39;s l1: 14.5285
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[5434]    valid_0&#39;s l1: 14.5385
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3310]    valid_0&#39;s l1: 14.73
+fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3939]    valid_0&#39;s l1: 14.6399
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2806]    valid_0&#39;s l1: 14.6524
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4375]    valid_0&#39;s l1: 14.5624
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4439]    valid_0&#39;s l1: 14.7281
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4375]    valid_0&#39;s l1: 14.7686
+fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4424]    valid_0&#39;s l1: 14.7947
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[5509]    valid_0&#39;s l1: 14.8132
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2970]    valid_0&#39;s l1: 14.4896
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4146]    valid_0&#39;s l1: 14.6055
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3937]    valid_0&#39;s l1: 14.5792
+cv score1 for valid is:  0.06387148777659804</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">cv_pred_all2 = <span class="number">0</span></span><br><span class="line">en_amount = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">oof_lgb1 = np.zeros(len(train_data))</span><br><span class="line">prediction_lgb2 = np.zeros(len(test_data))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> seed <span class="keyword">in</span> range(en_amount):</span><br><span class="line">    NFOLDS = <span class="number">5</span></span><br><span class="line">    train_label = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    kfold = KFold(n_splits=NFOLDS, shuffle=<span class="literal">True</span>, random_state=seed)</span><br><span class="line">    kf = kfold.split(train_data, train_label)</span><br><span class="line"></span><br><span class="line">    train_data_use = train_data.drop([<span class="string">&#x27;用户编码&#x27;</span>, <span class="string">&#x27;信用分&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">    test_data_use = test_data.drop([<span class="string">&#x27;用户编码&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv_pred = np.zeros(test_data.shape[<span class="number">0</span>])</span><br><span class="line">    valid_best_l2_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    feature_importance_df = pd.DataFrame()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, (train_fold, validate) <span class="keyword">in</span> enumerate(kf):</span><br><span class="line">        print(<span class="string">&#x27;fold: &#x27;</span>, i, <span class="string">&#x27; training&#x27;</span>)</span><br><span class="line">        X_train, X_validate, label_train, label_validate = \</span><br><span class="line">        train_data_use.iloc[train_fold, :], train_data_use.iloc[validate, :], \</span><br><span class="line">        train_label[train_fold], train_label[validate]</span><br><span class="line">        dtrain = lgb.Dataset(X_train, label_train)</span><br><span class="line">        dvalid = lgb.Dataset(X_validate, label_validate, reference=dtrain)</span><br><span class="line">        bst = lgb.train(</span><br><span class="line">            params2,</span><br><span class="line">            dtrain,</span><br><span class="line">            num_boost_round=<span class="number">10000</span>,</span><br><span class="line">            valid_sets=dvalid,</span><br><span class="line">            verbose_eval=<span class="number">-1</span>,</span><br><span class="line">            early_stopping_rounds=<span class="number">250</span>)</span><br><span class="line">        cv_pred += bst.predict(test_data_use, num_iteration=bst.best_iteration)</span><br><span class="line">        valid_best_l2_all += bst.best_score[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;l1&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        oof_lgb1[validate] = bst.predict(</span><br><span class="line">            X_validate, num_iteration=bst.best_iteration)</span><br><span class="line">        prediction_lgb2 += bst.predict(</span><br><span class="line">            test_data_use, num_iteration=bst.best_iteration) / kfold.n_splits</span><br><span class="line"></span><br><span class="line">        fold_importance_df = pd.DataFrame()</span><br><span class="line">        fold_importance_df[<span class="string">&quot;feature&quot;</span>] = list(X_train.columns)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;importance&quot;</span>] = bst.feature_importance(</span><br><span class="line">            importance_type=<span class="string">&#x27;split&#x27;</span>, iteration=bst.best_iteration)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;fold&quot;</span>] = count + <span class="number">1</span></span><br><span class="line">        feature_importance_df = pd.concat(</span><br><span class="line">            [feature_importance_df, fold_importance_df], axis=<span class="number">0</span>)</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv_pred /= NFOLDS</span><br><span class="line">    valid_best_l2_all /= NFOLDS</span><br><span class="line"></span><br><span class="line">    cv_pred_all2 += cv_pred</span><br><span class="line">cv_pred_all2 /= en_amount</span><br><span class="line">prediction_lgb2 /= en_amount</span><br><span class="line">print(<span class="string">&#x27;cv2 score for valid is: &#x27;</span>, <span class="number">1</span> / (<span class="number">1</span> + valid_best_l2_all))</span><br></pre></td></tr></table></figure>
+
+<pre><code>fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4423]    valid_0&#39;s l1: 14.7215
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3077]    valid_0&#39;s l1: 14.7534
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3277]    valid_0&#39;s l1: 14.5732
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4180]    valid_0&#39;s l1: 14.5316
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3139]    valid_0&#39;s l1: 14.7765
+fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2928]    valid_0&#39;s l1: 14.5982
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2344]    valid_0&#39;s l1: 14.7204
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display_importances(feature_importance_df)</span><br></pre></td></tr></table></figure>
+
+<h3 id="XGB-训练及预测"><a href="#XGB-训练及预测" class="headerlink" title="XGB 训练及预测"></a>XGB 训练及预测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">xgb_params = &#123;<span class="string">&#x27;eta&#x27;</span>: <span class="number">0.005</span>, <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;subsample&#x27;</span>: <span class="number">0.8</span>, <span class="string">&#x27;colsample_bytree&#x27;</span>: <span class="number">0.8</span>,</span><br><span class="line">              <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;reg:linear&#x27;</span>, <span class="string">&#x27;eval_metric&#x27;</span>: <span class="string">&#x27;mae&#x27;</span>, <span class="string">&#x27;silent&#x27;</span>: <span class="literal">True</span>, <span class="string">&#x27;nthread&#x27;</span>: <span class="number">20</span>&#125;</span><br><span class="line">cv_pred_allxgb = <span class="number">0</span></span><br><span class="line">en_amount = <span class="number">3</span></span><br><span class="line">oof_xgb1 = np.zeros(len(train_data))</span><br><span class="line">prediction_xgb1 = np.zeros(len(test_data))</span><br><span class="line"><span class="keyword">for</span> seed <span class="keyword">in</span> range(en_amount):</span><br><span class="line">    NFOLDS = <span class="number">5</span></span><br><span class="line">    train_label = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line">    kfold = KFold(n_splits=NFOLDS, shuffle=<span class="literal">True</span>, random_state=seed+<span class="number">2019</span>)</span><br><span class="line">    kf = kfold.split(train_data, train_label)</span><br><span class="line"></span><br><span class="line">    train_data_use = train_data.drop([<span class="string">&#x27;用户编码&#x27;</span>, <span class="string">&#x27;信用分&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">    test_data_use = test_data.drop([<span class="string">&#x27;用户编码&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv_pred = np.zeros(test_data.shape[<span class="number">0</span>])</span><br><span class="line">    valid_best_l2_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    feature_importance_df = pd.DataFrame()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, (train_fold, validate) <span class="keyword">in</span> enumerate(kf):</span><br><span class="line">        print(<span class="string">&#x27;fold: &#x27;</span>, i, <span class="string">&#x27; training&#x27;</span>)</span><br><span class="line">        X_train, X_validate, label_train, label_validate = train_data_use.iloc[train_fold,</span><br><span class="line">                                                                               :], train_data_use.iloc[validate, :], train_label[train_fold], train_label[validate]</span><br><span class="line">        dtrain = xgb.DMatrix(X_train, label_train)</span><br><span class="line">        dvalid = xgb.DMatrix(X_validate, label_validate)</span><br><span class="line">        watchlist = [(dtrain, <span class="string">&#x27;train&#x27;</span>), (dvalid, <span class="string">&#x27;valid_data&#x27;</span>)]</span><br><span class="line">        bst = xgb.train(dtrain=dtrain, num_boost_round=<span class="number">10000</span>, evals=watchlist,</span><br><span class="line">                        early_stopping_rounds=<span class="number">100</span>, verbose_eval=<span class="number">300</span>, params=xgb_params)</span><br><span class="line">        cv_pred += bst.predict(xgb.DMatrix(test_data_use),</span><br><span class="line">                               ntree_limit=bst.best_ntree_limit)</span><br><span class="line">        oof_xgb1[validate] = bst.predict(xgb.DMatrix(</span><br><span class="line">            X_validate), ntree_limit=bst.best_ntree_limit)</span><br><span class="line">        prediction_xgb1 += bst.predict(xgb.DMatrix(test_data_use),</span><br><span class="line">                                       ntree_limit=bst.best_ntree_limit)/kfold.n_splits</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv_pred /= NFOLDS</span><br><span class="line">    cv_pred_allxgb += cv_pred</span><br><span class="line">cv_pred_allxgb /= en_amount</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prediction_xgb1 /= en_amount</span><br><span class="line">prediction_lgb_all = (prediction_lgb1 + prediction_lgb2) / <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将lgb和xgb的结果进行stacking</span></span><br><span class="line">train_stack = np.vstack([oof_lgb1, oof_xgb1]).transpose()</span><br><span class="line">test_stack = np.vstack([prediction_lgb_all, prediction_xgb1]).transpose()</span><br><span class="line"></span><br><span class="line">folds_stack = RepeatedKFold(n_splits=<span class="number">5</span>, n_repeats=<span class="number">2</span>, random_state=<span class="number">2019</span>)</span><br><span class="line">oof_stack = np.zeros(train_stack.shape[<span class="number">0</span>])</span><br><span class="line">predictions = np.zeros(test_stack.shape[<span class="number">0</span>])</span><br><span class="line">target = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds_stack.split(train_stack, target)):</span><br><span class="line">    print(<span class="string">&quot;fold &#123;&#125;&quot;</span>.format(fold_))</span><br><span class="line">    trn_data, trn_y = train_stack[trn_idx], target.iloc[trn_idx].values</span><br><span class="line">    val_data, val_y = train_stack[val_idx], target.iloc[val_idx].values</span><br><span class="line"></span><br><span class="line">    clf_3 = BayesianRidge()</span><br><span class="line">    clf_3.fit(trn_data, trn_y)</span><br><span class="line"></span><br><span class="line">    oof_stack[val_idx] = clf_3.predict(val_data)</span><br><span class="line">    predictions += clf_3.predict(test_stack) / <span class="number">10</span></span><br><span class="line"></span><br><span class="line">mean_absolute_error(target.values, oof_stack)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Submit"><a href="#Submit" class="headerlink" title="Submit"></a>Submit</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1 = test_data[[<span class="string">&#x27;用户编码&#x27;</span>]]</span><br><span class="line">test_data_sub1[<span class="string">&#x27;score&#x27;</span>] =  predictions</span><br><span class="line">test_data_sub1.columns = [<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]</span><br><span class="line"><span class="comment"># test_data_sub1[&#x27;score1&#x27;] = (cv_pred_all1 + cv_pred_all2) / 2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1.head()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1[<span class="string">&#x27;score&#x27;</span>] = test_data_sub1[<span class="string">&#x27;score&#x27;</span>].apply(<span class="keyword">lambda</span> x: int(np.round(x)))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1.head()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1[[<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]].to_csv(<span class="string">&#x27;../output/result.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2019/03/12/2019%E6%B6%88%E8%B4%B9%E8%80%85%E4%BA%BA%E7%BE%A4%E7%94%BB%E5%83%8F%E2%80%94%E4%BF%A1%E7%94%A8%E6%99%BA%E8%83%BD%E8%AF%84%E5%88%86%E7%AB%9E%E8%B5%9B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2019/03/13/Graph-Neural-Networks-for-Social-Recommendation/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Graph Neural Networks for Social Recommendation
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/12/HyperOptSklearn%E8%B0%83%E5%8F%82/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">HyperOptSklearn调参</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020
+        <i class="ri-heart-fill heart_icon"></i> John Doe
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/logo.png" alt="Z2WNB"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+
+<script src="/js/clickBoom2.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

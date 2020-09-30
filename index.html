@@ -13,7 +13,7 @@
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/images/logo.png" />
   
   
 <link rel="stylesheet" href="/dist/main.css">
@@ -33,6 +33,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="Z2WNB" type="application/atom+xml">
 </head>
 
 </html>
@@ -41,12 +42,15 @@
   <div id="app">
     
       
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
     <main class="content on">
       
 <section class="cover">
     
       
-      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+      <a class="forkMe" href="https://github.com/z2wnb/z2wnb.github.io"
         target="_blank"><img width="149" height="149" src="/images/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     
@@ -55,7 +59,7 @@
       <img src="/images/cover1.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
-      <h1><a href="/">Hexo</a></h1>
+      <h1><a href="/">Z2WNB</a></h1>
       <div id="subtitle-box">
         
         <span id="subtitle"></span>
@@ -202,9 +206,982 @@
 </article>
 
     
+    <article
+  id="poat-推荐系统十大挑战"
+  class="article article-type-poat"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/14/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%8D%81%E5%A4%A7%E6%8C%91%E6%88%98/"
+    >推荐系统十大挑战</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/14/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%8D%81%E5%A4%A7%E6%8C%91%E6%88%98/" class="article-date">
+  <time datetime="2019-04-14T10:51:29.000Z" itemprop="datePublished">2019-04-14</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="推荐系统十大挑战"><a href="#推荐系统十大挑战" class="headerlink" title="推荐系统十大挑战"></a>推荐系统十大挑战</h1><h2 id="挑战一：数据稀疏性问题"><a href="#挑战一：数据稀疏性问题" class="headerlink" title="挑战一：数据稀疏性问题"></a>挑战一：数据稀疏性问题</h2><blockquote>
+<p>现在待处理的推荐系统规模越来越大，用户和商品（也包括其他物品，譬如音乐、网页、文献……）数目动辄百千万计，两个用户之间选择的重叠非常少。如果用用户和商品之间已有的选择关系占所有可能存在的选择关系的比例来衡量系统的稀疏性，那么我们平时研究最多的 MovieLens 数据集的稀疏度是 4.5%，Netflix 是 1.2%，这些其实都是非常密的数据了，Bibsonomy 是 0.35%，Delicious 是 0.046%。想想淘宝上号称有 8 亿商品，平均而言一个用户能浏览 800 件吗，我估计不能，所以稀疏度应该在百万分之一或以下的量级。数据非常稀疏，使得绝大部分基于关联分析的算法（譬如协同过滤）效果都不好。这个问题本质上是无法完全克服的，为了解决这个问题，也有很多办法，譬如可以通过扩散的算法，从原来的一阶关联（两个用户有多少相似打分或者共同购买的商品）到二阶甚至更高阶的关联（假设关联性或者说相似性本身是可以传播的）[8]，也可以添加一些缺省的打分[9]，从而提高相似性的分辨率。数据规模越大，一般而言越稀疏，现在能够处理稀疏数据的算法被认为是更有前途的（譬如扩散[8]、迭代寻优[10]，转移相似性[11]等等）。</p>
+</blockquote>
+<h2 id="挑战二：冷启动问题"><a href="#挑战二：冷启动问题" class="headerlink" title="挑战二：冷启动问题"></a>挑战二：冷启动问题</h2><blockquote>
+<p>新用户因为罕有可以利用的行为信息，很难给出精确的推荐。反过来，新商品由于被选择次数很少，也难以找到合适的办法推荐给用户。一种办法是利用文本信息进行辅助推荐，或者通过注册以及询问得知一些用户的属性信息，譬如年龄、居住城市、受教育程度、性别、职业等等[12,13]。最近标签系统（tagging systems）的广泛应用提供了解决冷启动问题的可能方案[14]，因为标签既可以看作是商品内容的萃取，同时也反映了用户的个性化喜好——譬如对《桃姐》这部电影，有的人打上标签“伦理”，有的人打上标签“刘德华”，两个人看的电影一样，但是兴趣点可能不尽相同。当然，利用标签也只能是提高有少量行为的用户的推荐准确性，对于纯粹的冷启动用户，是没有帮助的，因为这些人还没有打过任何标签。有趣的是，最近的研究显示，新用户更容易选择特别流行的商品[15]——这无论如何是一个好消息，说明使用热销榜也能获得不错的结果。冷启动问题还可以通过多维数据的交叉推荐部分解决，其精确度和多样性又远胜于热销榜，这一点我们在后面会进一步介绍。</p>
+</blockquote>
+<h2 id="挑战三：大数据处理与增量计算问题"><a href="#挑战三：大数据处理与增量计算问题" class="headerlink" title="挑战三：大数据处理与增量计算问题"></a>挑战三：大数据处理与增量计算问题</h2><blockquote>
+<p>尽管数据很稀疏，大部分数据都拥有百千万计的用户和商品，因此，如何快速高效处理这些数据成为迫在眉睫的问题，而算法时间和空间的复杂性，尤其是前者，获得了空前重视。一个高效的算法，要么复杂性很低，要么能够很好并行化，要么两者兼具。局部扩散算法在这两个方面都具有明显优势[16]！另外一条可能的解决之道，是设计增量算法，也就是说当产生新用户，新商品以及新的连接关系时，算法的结果不需要在整个数据集上重新进行计算，而只需要考虑所增加节点和连边局部的信息，对原有的结果进行微扰，快速得到新结果[17]。一般而言，这种算法随着加入的信息量的增多，其误差会积累变大，最终每过一段时间还是需要利用全局数据重新进行计算。一个特别困难的挑战，使如何设计一种算法，能够保证其误差不会累积，也就是说其结果与利用全部数据重新计算的结果之间的差异不会单调上升。我们把这种算法叫做自适应算法，它是增量算法的一个加强版本[18]，其设计要求和难度更高。增量算法已经在业界有了应用，譬如百分点科技推荐引擎中的若干算法都采用了增量技术，使得用户每次新浏览收藏或者购买商品后其推荐列表立刻得到更新。当然，该引擎也只是部分算法实现了增量技术，更没有达到所有算法都能够自适应学习的程度，还有很长的路要走。</p>
+</blockquote>
+<h2 id="挑战四：多样性与精确性的两难困境"><a href="#挑战四：多样性与精确性的两难困境" class="headerlink" title="挑战四：多样性与精确性的两难困境"></a>挑战四：多样性与精确性的两难困境</h2><blockquote>
+<p>如果要给用户推荐他喜欢的商品，最“保险”的方式就是给他特别流行或者得分特别高的商品，因为这些商品有更大的可能性被喜欢（至少贝叶斯会这么想），往坏了说，也很难特别被讨厌。但是，这样的推荐产生的用户体验并不一定好，因为用户很可能已经知道这些热销流行的产品，所以得到的信息量很少，并且用户不会认同这是一种“个性化的”推荐。事实上，Mcnee 等人已经警告大家，盲目崇拜精确性指标可能会伤害推荐系统——因为这样可能会导致用户得到一些信息量为 0 的“精准推荐”并且视野变得越来越狭窄[19]。让用户视野变得狭窄也是协同过滤算法存在的一个比较主要的缺陷。与此同时，应用个性化推荐技术的商家，也希望推荐中有更多的品类出现，从而激发用户新的购物需求。遗憾的是，推荐多样的商品和新颖的商品与推荐的精确性之间存在矛盾，因为前者风险很大——一个没什么人看过或者打分较低的东西推荐出手，很可能被用户憎恶，从而效果更差。很多时候，这是一个两难的问题，只能通过牺牲多样性来提高精确性，或者牺牲精确性来提高多样性。一种可行之策是直接对推荐列表进行处理，从而提升其多样性[20-22]。目前百分点推荐引擎所使用的方法也是类似的。这种方法固然在应用上是有效的，但是没有任何理论的基础和优美性可言，只能算一种野蛮而实用的招数。我们发现，通过精巧混合精确性高和多样性好的两种算法，可以同时提高算法的多样性和精确性，不需要牺牲任何一方[23]。遗憾的是，我们还没有办法就这个结果提供清晰的解读和深刻的见解。多样性和精确性之间错综复杂的关系和隐匿其后的竞争，到目前为止还是一个很棘手的难题。</p>
+</blockquote>
+<h2 id="挑战五：推荐系统的脆弱性问题"><a href="#挑战五：推荐系统的脆弱性问题" class="headerlink" title="挑战五：推荐系统的脆弱性问题"></a>挑战五：推荐系统的脆弱性问题</h2><blockquote>
+<p>受推荐系统在电子商务领域重大的经济利益的驱动，一些心怀不轨的用户通过提供一些虚假恶意的行为，故意增加或者压制某些商品被推荐的可能性[24]。因此，一个算法能否在一定程度上保持对恶意攻击的鲁棒性，成为需要认真考虑的一个特征。以最简单的关联规则挖掘算法为例，Apriori 算法的鲁棒性就远胜于 k 近邻算法[25]。有一些技术已经被设计出来提高推荐系统面对恶意攻击的鲁棒性，譬如通过分析对比真实用户和疑似恶意用户之间打分行为模式的差异，提前对恶意行为进行判断，从而阻止其进入系统或赋予疑似恶意用户比较低的影响力[26-28]。总体来说，这方面的研究相对较少，系统性的分析还很缺乏，反而是攻击策略层出不穷，有一种“道高一尺，魔高一丈”的感觉。仅 Burke 等人 2011 年的研究报告中就分析了 4 大种类 8 种不同的攻击策略[29]。</p>
+</blockquote>
+<h2 id="挑战六：用户行为模式的挖掘和利用"><a href="#挑战六：用户行为模式的挖掘和利用" class="headerlink" title="挑战六：用户行为模式的挖掘和利用"></a>挑战六：用户行为模式的挖掘和利用</h2><blockquote>
+<p>深入挖掘用户的行为模式有望提高推荐的效果或在更复杂的场景下进行推荐。譬如说，新用户和老用户具有很不一样的选择模式：一般而言，新用户倾向于选择热门的商品，而老用户对于小众商品关注更多[15]，新用户所选择的商品相似度更高，老用户所选择的商品多样性较高[30]。有些混合算法可以通过一个单参数调节推荐结果的多样性和热门程度[23]，在这种情况下就可以考虑为给不同用户赋予不同参数（从算法结果的个性化到算法本身的个性化），甚至允许用户自己移动一个滑钮调节这个参数——当用户想看热门的时候，算法提供热门推荐；当用户想找点很酷的产品时，算法也可以提供冷门推荐。用户行为的时空统计特性也可以用于提高推荐或者设计针对特定场景的应用。用户的选择可能同时蕴含了长期的兴趣和短期的兴趣，通过将这两种效应分离出来，可以明显提高推荐的精确度[31-33]。事实上，简单假设用户兴趣随时间按照指数递减，也能够得到改进的推荐效果[34,35]。利用手机上网现在已经越来越普及，与此同时，嵌入 GPS 的手机越来越多，因此，基于位置的服务成为一个受到学术界和业界广泛关注的问题。基于位置信息的推荐可能会成为个性化推荐的一个研究热点和重要的应用场景，而这个问题的解决需要能够对用户的移动模式有深入理解[36,37]（包括预测用户的移动轨迹和判断用户在当前位置是否有可能进行餐饮购物活动等），同时还要有定量的办法去定义用户之间以及地点之间的相似性[38,39]。另外，不同用户打分的模式也很不一样[40,41]，用户针对不同商品的行为模式也不一样[42,43]（想象你在网上下载一首歌和团购房子时的区别），这些都可以用来提高推荐的效果。</p>
+</blockquote>
+<h2 id="挑战七：推荐系统效果评估"><a href="#挑战七：推荐系统效果评估" class="headerlink" title="挑战七：推荐系统效果评估"></a>挑战七：推荐系统效果评估</h2><blockquote>
+<p>推荐系统的概念提出已经有几十年了，但是怎么评价推荐系统，仍然是一个很大的问题。常见的评估指标可以分为四大类，分别是准确度、多样性、新颖性和覆盖率，每一类下辖很多不同的指标，譬如准确度指标又可以分为四大类，分别是预测评分准确度、预测评分关联、分类准确度、排序准确度四类。以分类准确度为例，又包括准确率、召回率、准确率提高率、召回率提高率、F1 指标和 AUC 值。朱郁筱和吕琳媛总结了文献中曾经出现过的几乎所有的推荐系统指标[44]，这些指标都是基于数据本身的指标，可以认为是第一层次。实际上，在真实应用时，更为重要的是另外两个层次的评价，第二个层次是商业应用上的关键表现指标，譬如受推荐影响的转化率，购买率，客单价，购买品类数等等，第三个层次是用户真实的体验。绝大部分研究只针对第一个层次的评价指标，而业界真正感兴趣的是第二个层次的评价（譬如到底是哪个指标或者哪些指标组合的结果能够提高用户购买的客单价），而第三个层细最难，没人能知道，只能通过第二层面来估计。如何建立第一层面和第二层面指标之间的关系，就成为了关键，这一步打通了，理论和应用之间的屏障就通了一大半了。</p>
+</blockquote>
+<h2 id="挑战八：用户界面与用户体验"><a href="#挑战八：用户界面与用户体验" class="headerlink" title="挑战八：用户界面与用户体验"></a>挑战八：用户界面与用户体验</h2><blockquote>
+<p>这个问题更多地不是一个学术性质的问题，而是真实应用的问题。十年前就有学者指出[45,46]，推荐结果的可解释性，对于用户体验有至关重要的影响——用户希望知道这个推荐是怎么来的。在这个意义上，协同过滤有明显的优势，譬如亚马逊基于商品的协同过滤在发送推荐的电子邮件时会告诉用户之所以向其推荐某书，是因为用户以前购买过某些书。相对地，矩阵分解或者集成学习算法就很难向用户解释推荐结果的起源。用户更喜欢来自自己朋友的推荐而不是系统的推荐，这一点在后面还会详细提到。另外，推荐列表往往含有很多项，这些推荐项最好能够区分成很多类别，不同类别往往来自于不同的推荐方法，譬如看过还看过（浏览过本商品的客户还浏览过的商品）、买过还买过（购买过本商品的客户还购买过的商品）、看过最终购买（浏览过本商品的客户最终购买的商品）、个性化热销榜（个性化流行品推荐）、猜你喜欢（个性化冷门商品推荐）等等。当然，如何更好呈现推荐，是一个很难建立理论模型和进行量化的问题，对于不同被推荐品而言，用户界面设计的准则也可能大不相同。建立一个可以进行 A/B 测试的系统，或可积累重要的实验数据。</p>
+</blockquote>
+<h2 id="挑战九：多维数据的交叉利用"><a href="#挑战九：多维数据的交叉利用" class="headerlink" title="挑战九：多维数据的交叉利用"></a>挑战九：多维数据的交叉利用</h2><blockquote>
+<p>目前网络科学研究一个广受关注的概念是具有相互作用的网络的结构和动力学。网络与网络之间的相互作用大体可以分成三类：一类是依存关系[47]，譬如电力网络和 Internet，如果发生了大规模停电事故，当地的自主系统和路由器也会受到影响，导致网络局部中断；第二类是合作关系[48]，譬如人的一次出行，可以看作航空网络、铁路网络和公路网络的一次合作；第三类是交叠关系[49]，主要针对社会网络，这也是我们最关注的。我们几乎每一个人，都参与了不止一个大型的社会网络中，譬如你可能既有新浪微博的帐号，又是人人网的注册用户，还是用手机，那么你已经同时在三个巨大的社会网络中了。与此同时，你可能还经常在淘宝、京东、麦包包、1 号店、库巴网……这些地方进行网购，那么你也是一张巨大的用户-商品二部分图中的一员。想象如果能够把这些网络数据整合起来，特别是知道每个节点身份的对应关系（不需要知道你真实身份，只需要知道不同网络中存在的一些节点是同一个人），其中有特别巨大的社会经济价值。举个例子，你可能已经在新浪微博上关注了很多数据挖掘达人的微博，并且分享了很多算法学习的心得和问题，当你第一次上当当网购书的时候，如果主页向你推荐数据挖掘的最新专著并附有折扣，你会心动吗？交叠社会关系中的数据挖掘，或称多维数据挖掘，是真正有望解决系统内部冷启动问题的终极法宝——只要用户在系统外部的其他系统有过活动。单纯从个性化商品推荐来讲，可以利用用户在其他电商的浏览购买历史为提高在目标电商推荐的精确度——当然，每一个电商既是付出者，也是获利者，总体而言，大家能够通过提高用户体验和点击深度实现共赢。与此同时，可以利用微博和其他社会网络的活动提高商品推荐的精度，还可以反过来利用商品浏览历史提高微博关注对象推荐的精度。给一个经常购买专业羽毛球和浏览各种专业羽毛球设备的用户推荐关注羽毛球的专业选手和业余教练成功率应该很高，而且不会陷入“总在一个圈子里面来回推荐”的毛病中。 从机器学习的角度，杨强等人提出的“迁移学习”算法有望移植来解决这种跨邻域的推荐[50]。我们分析了百分点科技服务客户的真实数据，发现有相当比例的用户都具有交叉购物的习惯（在多个独立 B2C 电商有浏览和购买行为）[51,52]。即便只考虑两个点上，例如利用麦包包的浏览购买数据为名鞋库的用户进行个性化推荐（这些用户在名鞋库上是没有任何历史记录的新用户，但是在麦包包上有浏览购买行为），就可以明显提高推荐的准确度[51]（比完全冷启动的随机推荐高数十倍），而如果利用 3 家或以上的外部电商的数据，其推荐的精确度可以明显高于热销榜（注意，热销榜一点个性化都没有），特别在团购类网站上表现非常好[52]。虽然针对多维数据挖掘的研究刚刚起步，但是我完全相信这在学术和应用上都将是一个焦点和难点。</p>
+</blockquote>
+<h2 id="挑战十：-社会推荐"><a href="#挑战十：-社会推荐" class="headerlink" title="挑战十： 社会推荐"></a>挑战十： 社会推荐</h2><blockquote>
+<p>很早以前，研究人员就发现，用户更喜欢来自朋友的推荐而不是被系统“算出来的推荐”[53]。社会影响力被认为比历史行为的相似性更加重要[54,55]，例如通过社会关系的分析，可以大幅度提高从科研文献[56]到网购商品[57]推荐的精确度。来自朋友的社会推荐有两方面的效果：一是增加销售（含下载、阅读……）[58]，二是在销售后提高用户的评价[59]。社会推荐的效果也不完全是正面的，譬如 Leskovec 等人[58]在同一篇论文中也报导了一个反例：朋友推荐对书的销售增长几乎没有帮助，有时候还会起到负面作用。国内业界做得最出色的是豆瓣网，其朋友推荐被接受被高度评价的比例非常高，我们的研究也主要是基于豆瓣网的数据[59]。最近有证据显示，朋友推荐也是淘宝商品销售一个非常重要的驱动力量[60]。在社会推荐方向存在的挑战主要可以分为三类：一是如何利用社会关系提高推荐的精确度[55]，二是如何建立更好的机制以促进社会推荐[61,62]，三是如何将社会信任关系引入到推荐系统中[63,64]。社会推荐的效果可能来自于类似口碑传播的社会影响力，也可能是因为朋友之间本来就具有相似的兴趣或者兴趣相投更易成为朋友，对这些不同的潜在因素进行量化区别，也属学术研究的热点之一[65]。</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">推荐系统</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Shadowsocks使用教程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/13/Shadowsocks%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"
+    >Shadowsocks使用教程</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/13/Shadowsocks%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2019-04-13T09:03:03.000Z" itemprop="datePublished">2019-04-13</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Shadowsocks-翻墙使用教程-适用于-Windows-和-Android-版"><a href="#Shadowsocks-翻墙使用教程-适用于-Windows-和-Android-版" class="headerlink" title="Shadowsocks 翻墙使用教程(适用于 Windows 和 Android 版)"></a>Shadowsocks 翻墙使用教程(适用于 Windows 和 Android 版)</h1><h2 id="1-Windows-教程"><a href="#1-Windows-教程" class="headerlink" title="1. Windows 教程"></a>1. Windows 教程</h2><h3 id="1-1-添加订阅地址（删除原有的）"><a href="#1-1-添加订阅地址（删除原有的）" class="headerlink" title="1.1 添加订阅地址（删除原有的）"></a>1.1 添加订阅地址（删除原有的）</h3><p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g21443zcpqj30h707lq2y.jpg" alt="1"><br><img src="https://ws1.sinaimg.cn/large/006wCagogy1g21443zczrj30n20d40sy.jpg" alt="2"></p>
+<h3 id="1-2-更新订阅地址"><a href="#1-2-更新订阅地址" class="headerlink" title="1.2 更新订阅地址"></a>1.2 更新订阅地址</h3><p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g21443zuqzj30hy07h3yj.jpg" alt="3"></p>
+<h3 id="1-3-常用软件设置"><a href="#1-3-常用软件设置" class="headerlink" title="1.3 常用软件设置"></a>1.3 常用软件设置</h3><ul>
+<li>不需要翻墙的话可以选择直连模式，这样不会消耗服务器流量，PAC 模式据说会自动代理，但是不一定</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g21443y4ouj30fr04yt8n.jpg" alt="4"><br><img src="https://ws1.sinaimg.cn/large/006wCagogy1g21443zpjwj30kc0fwdg6.jpg" alt="5"></p>
+<h3 id="1-4-选择服务器"><a href="#1-4-选择服务器" class="headerlink" title="1.4 选择服务器"></a>1.4 选择服务器</h3><ul>
+<li>有个软件默认设置的服务器可以删除掉</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g214440ybhj30pq0qnq4m.jpg" alt="6"></p>
+<h3 id="1-5-访问测试"><a href="#1-5-访问测试" class="headerlink" title="1.5 访问测试"></a>1.5 访问测试</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.google.com.hk/">https://www.google.com.hk/</a></li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g214441mstj31h70m9mxk.jpg" alt="7"></p>
+<h2 id="2-Android-教程"><a href="#2-Android-教程" class="headerlink" title="2. Android 教程"></a>2. Android 教程</h2><h3 id="2-1-添加订阅地址"><a href="#2-1-添加订阅地址" class="headerlink" title="2.1 添加订阅地址"></a>2.1 添加订阅地址</h3><p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g2144478jlj30u01rcjv6.jpg" alt="8"><br><img src="https://ws1.sinaimg.cn/large/006wCagogy1g214445c3aj30u01rcju9.jpg" alt="9"><br><img src="https://ws1.sinaimg.cn/large/006wCagogy1g214me9dzmj30u01rc0um.jpg" alt="10"></p>
+<h3 id="2-2-关闭自动更新，然后点击确定并升级"><a href="#2-2-关闭自动更新，然后点击确定并升级" class="headerlink" title="2.2 关闭自动更新，然后点击确定并升级"></a>2.2 关闭自动更新，然后点击确定并升级</h3><p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g214444ykjj30gq0zaaax.jpg" alt="11"></p>
+<h3 id="2-3-选择服务器后，退回主界面，点击闪电按钮启动即可"><a href="#2-3-选择服务器后，退回主界面，点击闪电按钮启动即可" class="headerlink" title="2.3 选择服务器后，退回主界面，点击闪电按钮启动即可"></a>2.3 选择服务器后，退回主界面，点击闪电按钮启动即可</h3><p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g21444b35pj30u01rc46f.jpg" alt="12"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-个人健康技术"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/06/%E4%B8%AA%E4%BA%BA%E5%81%A5%E5%BA%B7%E6%8A%80%E6%9C%AF/"
+    >个人健康技术</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/06/%E4%B8%AA%E4%BA%BA%E5%81%A5%E5%BA%B7%E6%8A%80%E6%9C%AF/" class="article-date">
+  <time datetime="2019-04-06T06:45:21.000Z" itemprop="datePublished">2019-04-06</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="个人健康技术-PPT"><a href="#个人健康技术-PPT" class="headerlink" title="个人健康技术 PPT"></a>个人健康技术 PPT</h1><hr>
+<p><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqgd6gj30zk0k03yn.jpg" alt="1"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqenoaj30zk0k0jrm.jpg" alt="2"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqj9paj30zk0k0agg.jpg" alt="3"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqgvu8j30zk0k0js7.jpg" alt="4"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqg65mj30zk0k03z5.jpg" alt="5"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqjm50j30zk0k0n2q.jpg" alt="6"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqk0unj30zk0k0wf3.jpg" alt="7"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqvxj4j30zk0k0agk.jpg" alt="8"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqmxx9j30zk0k0taf.jpg" alt="9"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqlofmj30zk0k0ta2.jpg" alt="10"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqyalpj30zk0k0wfo.jpg" alt="11"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsr9ym3j30zk0k0q8g.jpg" alt="12"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsqxri3j30zk0k0myz.jpg" alt="13"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsrbh0ij30zk0k0jt5.jpg" alt="14"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsrctv9j30zk0k0406.jpg" alt="15"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsrb049j30zk0k0wfq.jpg" alt="16"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsrcjgej30zk0k075o.jpg" alt="17"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsrbzc1j30zk0k0dgy.jpg" alt="18"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1swsrdg80j30zk0k0a9w.jpg" alt="19"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BA%A7%E5%93%81%E7%BA%BF/" rel="tag">软件产品线</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-超新星发现"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/03/20/%E8%B6%85%E6%96%B0%E6%98%9F%E5%8F%91%E7%8E%B0/"
+    >超新星发现</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/20/%E8%B6%85%E6%96%B0%E6%98%9F%E5%8F%91%E7%8E%B0/" class="article-date">
+  <time datetime="2019-03-20T12:33:13.000Z" itemprop="datePublished">2019-03-20</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="2019-未来杯高校-AI-挑战赛-gt-图像-发现超新星"><a href="#2019-未来杯高校-AI-挑战赛-gt-图像-发现超新星" class="headerlink" title="2019 未来杯高校 AI 挑战赛 &gt; 图像-发现超新星"></a>2019 未来杯高校 AI 挑战赛 &gt; 图像-发现超新星</h1><h2 id="1-任务目标"><a href="#1-任务目标" class="headerlink" title="1. 任务目标"></a>1. 任务目标</h2><pre><code>设计一个目标检测模型，从天文望远镜拍摄到的影像中发现疑似新星、超新星。</code></pre>
+<h2 id="2-规则说明"><a href="#2-规则说明" class="headerlink" title="2. 规则说明"></a>2. 规则说明</h2><pre><code>参赛选手需要基于给定的数据集，设计并训练模型，用于检测PSP项目中天文望远镜拍摄到的影像中的疑似星体，排除噪点和鬼影。测试集中包含志愿者对坐标中心点的标注，以及高级用户对此标注的进一步分类标注。包含 疑似星体 和 非疑似星体，详见“数据集”页面。疑似星体包括高级用户标注为：已知的疑似超新星（known）、新发现的疑似超新星（newtarget）、变星或疑似变星（isnova）、恒星（isstar）、小行星（asteroid）。非疑似星体包括高级用户标注为：噪点（noise）、鬼影（ghost）、无可疑目标（pity）。每组包含三张照片，分别为新图、历史图，和这两张图片的差值图像。</code></pre>
+<h2 id="3-测试集发放与结果提交"><a href="#3-测试集发放与结果提交" class="headerlink" title="3. 测试集发放与结果提交"></a>3. 测试集发放与结果提交</h2><pre><code>测试集会于约定时间开放给选手，选手需要在提交截止时间前提交正式数据集的验证结果、模型和代码，详见“结果提交”页面。每队选手有3次提交机会，取最好成绩作为客观成绩。</code></pre>
+<ul>
+<li>测试集 csv 格式如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">id</span><br><span class="line">d52f52b895f03a214a3a077acd253066</span><br><span class="line">0b1685708bdf8bf82f1ffce8705b109b</span><br><span class="line">732c55c0629a016be567c5fe76d3cf96</span><br><span class="line">06bb4bc28935b60334153e7e8a5a06fd</span><br><span class="line">530099dd7961f5341f66d8cdcb89269b</span><br><span class="line">9e9b6fd78b5240058f5f6db837a16d48</span><br><span class="line">412375a90b92dd4c71d1245b5332c134</span><br><span class="line">1bfe2a17b1827a9eea1b5f2610aa7026</span><br><span class="line">f5796ac41ed58be966f253b59a83419f</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结果需要提交 csv 文件，格式要求如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">id,x1,y1,x2,y2,x3,y3,havestar</span><br><span class="line">d52f52b895f03a214a3a077acd253066,123,321,55,66,222,222,1</span><br><span class="line">0b1685708bdf8bf82f1ffce8705b109b,234,432,77,88,111,111,0</span><br><span class="line">732c55c0629a016be567c5fe76d3cf96,123,321,55,66,222,222,1</span><br><span class="line">06bb4bc28935b60334153e7e8a5a06fd,234,432,77,88,111,111,1</span><br><span class="line">530099dd7961f5341f66d8cdcb89269b,123,321,55,66,222,222,0</span><br><span class="line">9e9b6fd78b5240058f5f6db837a16d48,123,321,55,66,222,222,0</span><br><span class="line">412375a90b92dd4c71d1245b5332c134,123,321,55,66,222,222,0</span><br><span class="line">1bfe2a17b1827a9eea1b5f2610aa7026,123,321,55,66,222,222,1</span><br><span class="line">f5796ac41ed58be966f253b59a83419f,123,321,55,66,222,222,1</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<pre><code>其中，每组图片一行，(x1, y1)、(x2, y2)、(x3, y3) 为对应id所代表图片组的三对预测坐标（疑似星体的几何中心），按置信度由高到低排序，以图片左上角为(0,0)计算。havestar使用0/1表示，代表这组图片中是否存在星体的判断，1代表存在，0代表不存在。</code></pre>
+<h2 id="4-计分方式"><a href="#4-计分方式" class="headerlink" title="4. 计分方式"></a>4. 计分方式</h2><pre><code>每组照片，选手提交的三个预测结果的坐标中，任一个与实际星体所在坐标欧几里得距离在15px之内的，即为预测成功。预测成功得1分，不成功得0分。每组照片，选手还需提交对图片中是否存在星体的判断（havestar），将作为次要的辅助计分因素。本次区域赛的目的是，可以为需要标注的图片提供参考，以提高人工看图的效率。所以，计分以预测坐标的命中率为主，命中率相同的，以疑似星体判断的F1值决定排名。计分公式如下：</code></pre>
+<p><img src="https://ai.futurelab.tv/storage/app/media/formula/formula-cv-1.png" alt="1" title="1"></p>
+<pre><code>S为最终得分，N表示存在疑似星体的图片组数，ti表示是否有预测正确的坐标，有为1，没有为0。其中：</code></pre>
+<p><img src="https://ai.futurelab.tv/storage/app/media/formula/formula-cv-0.png" alt="2" title="2"></p>
+<pre><code>F1为F1-score，即精确率和召回率的调和平均数（在0-1之间）。</code></pre>
+<h2 id="5-测试集发放与结果提交"><a href="#5-测试集发放与结果提交" class="headerlink" title="5. 测试集发放与结果提交"></a>5. 测试集发放与结果提交</h2><pre><code>预测试集TestA会先行开放，提供给参赛选手调试程序和验证模型。TestA的结果可提交至竞赛平台，获取跑分，但不计入比赛成绩。正式测试集TestB会于约定时间开放给选手，选手需要在72小时内提交正式数据集的验证结果、模型和代码，详见“结果提交”页面。每队选手有3次提交机会，取最好成绩作为客观成绩。</code></pre>
+<h2 id="6-比赛要求"><a href="#6-比赛要求" class="headerlink" title="6. 比赛要求"></a>6. 比赛要求</h2><ul>
+<li>参赛选手需要同时提交说明文档、预测结果、训练和预测代码、模型（参数集），详见“结果提交”页面。</li>
+<li>参赛选手所提交程序应可在 Linux 环境顺利运行。建议（不强制）使用 Python 2.7 或 Python3.6 作为首选编程环境，使用 Anaconda 3 搭建软件环境。不限制第三方软件包使用，但须获得合法授权和软件拷贝，以确保主办方可以复现程序运行过程。</li>
+<li>参赛选手提交的程序须满足输入输出的要求，参见“结果提交”页面。</li>
+<li>参数选手的提交物需要可完整复现训练和预测过程，主办方不会做任何代码修改，如无法复现的，视作无效提交。</li>
+<li>参赛选手可以使用公开开源的预训练模型，需要提供相关下载地址。</li>
+<li>不得使用提供的数据集之外的数据训练模型。</li>
+<li>不得将自行手工标注的结果运用于训练和测试。</li>
+</ul>
+<h2 id="7-参赛网址"><a href="#7-参赛网址" class="headerlink" title="7. 参赛网址"></a>7. 参赛网址</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://ai.futurelab.tv/contest_detail/1">https://ai.futurelab.tv/contest_detail/1</a></p>
+</blockquote>
+<h2 id="8-背景知识介绍"><a href="#8-背景知识介绍" class="headerlink" title="8. 背景知识介绍"></a>8. 背景知识介绍</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://psp.china-vo.org/article/sysaquiz1intro">http://psp.china-vo.org/article/sysaquiz1intro</a></p>
+</blockquote>
+<h2 id="9-数据分析（未经允许不得转载）"><a href="#9-数据分析（未经允许不得转载）" class="headerlink" title="9. 数据分析（未经允许不得转载）"></a>9. 数据分析（未经允许不得转载）</h2><p><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4bqraj30zk0k0mxz.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq49w3hj30zk0k0aaf.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4hghzj30zk0k0afn.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4cnwij30zk0k0mzp.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4duusj30zk0k0juv.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4fzv7j30zk0k0acl.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4mrlaj30zk0k0adb.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq4h169j30zk0k00t6.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq565g9j30zk0k00w0.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq65lb3j30zk0k0tcx.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq6ai5pj30zk0k0dkv.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq7hssyj30zk0k0n17.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq5cp5jj30zk0k0764.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq5dfc5j30zk0k0aaf.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq624frj30zk0k0di7.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq6ey3rj30zk0k0dje.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq69nioj30zk0k0tas.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq6h573j30zk0k076o.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq6larnj30zk0k043q.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq6gyayj30zk0k0q3d.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq74cfcj30zk0k0adr.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq76p09j30zk0k0gov.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq7deesj30zk0k0413.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq6zla4j30zk0k0wfu.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beqboc69j30zk0k0acd.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq73pf4j30zk0k03yv.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq83yqcj30zk0k0dkg.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq878oaj30zk0k0gpp.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq7ioqej30zk0k0mxj.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq86z4vj30zk0k0q6r.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq84sykj30zk0k0n0m.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq87t5jj30zk0k0aaf.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq8o2z1j30zk0k0jtm.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq8o781j30zk0k076f.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq8bzp0j30zk0k0wew.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq8t4hgj30zk0k0tbx.jpg"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1beq9ham6j30zk0k0gp8.jpg"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E8%B5%9B/" rel="tag">比赛</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-推荐系统论文整理"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/03/14/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E8%AE%BA%E6%96%87%E6%95%B4%E7%90%86/"
+    >推荐系统系列论文整理</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/14/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E8%AE%BA%E6%96%87%E6%95%B4%E7%90%86/" class="article-date">
+  <time datetime="2019-03-14T07:38:49.000Z" itemprop="datePublished">2019-03-14</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainwzdwj30zk0k0gm8.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainwrqlj30zk0k074r.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainxigtj30zk0k0abd.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainwtqij30zk0k0gm5.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainzfsyj30zk0k0n18.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainzazqj30zk0k0wgm.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainzfhlj30zk0k0jsn.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainytavj30zk0k0aay.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jainzt2hj30zk0k0q56.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaio1d8ij30zk0k0q5o.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaio32ioj30zk0k0ta9.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaio2y2mj30zk0k0gnx.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiomqd9j30zk0k03z4.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaioc93fj30zk0k0mzw.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaioxu9pj30zk0k0420.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaip7sclj30zk0k0goa.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiov97xj30zk0k0djj.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaipw97wj30zk0k0dj1.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaioxgw2j30zk0k0q5y.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaipj64hj30zk0k041m.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaip1czdj30zk0k041f.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaipuh8tj30zk0k0god.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaipldgtj30zk0k0win.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiqpz12j30zk0k0gqz.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaipcmcoj30zk0k0aah.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiq6xe3j30zk0k0wh2.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jair1tflj30zk0k0q67.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jair5p5uj30zk0k0jtt.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiq84njj30zk0k076l.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiqy7amj30zk0k0411.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiqb1k0j30zk0k075j.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiqx4ykj30zk0k0juu.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiqvfy3j30zk0k0go0.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jaiqvitqj30zk0k0q4y.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jairaiwuj30zk0k0ack.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jairb3y1j30zk0k00wq.jpg"><br><img src="http://ws1.sinaimg.cn/large/006wCagogy1g2jair9c8ij30zk0k0aac.jpg"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">推荐系统</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Graph-Neural-Networks-for-Social-Recommendation"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/03/13/Graph-Neural-Networks-for-Social-Recommendation/"
+    >Graph Neural Networks for Social Recommendation</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/13/Graph-Neural-Networks-for-Social-Recommendation/" class="article-date">
+  <time datetime="2019-03-13T07:16:40.000Z" itemprop="datePublished">2019-03-13</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Graph-Neural-Networks-for-Social-Recommendation"><a href="#Graph-Neural-Networks-for-Social-Recommendation" class="headerlink" title="Graph Neural Networks for Social Recommendation"></a>Graph Neural Networks for Social Recommendation</h1><h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1. 摘要"></a>1. 摘要</h2><ul>
+<li><strong>构建基于图神经网络的推荐系统的三大挑战</strong><ul>
+<li>the user-item graph encodes both interactions and their associated opinions</li>
+<li>social relations have heterogeneous strengths</li>
+<li>users involve in two graphs (e.g., the user-user social graph and the user-item graph)</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2. 介绍"></a>2. 介绍</h2><ul>
+<li><p><strong>难点</strong></p>
+<ul>
+<li>Their main idea is how to iteratively aggregate feature information from local graph neighborhoods using neural networks. Meanwhile, node information can be propagated through a graph after transformation and aggregation.</li>
+</ul>
+</li>
+<li><p><strong>GNN 的作用</strong></p>
+<ul>
+<li>Hence, GNNs naturally integrate the node information as well as the topological structure and have been demonstrated to be powerful in representation learning [ 5 , 7 , 15 ]. On the other hand, data in social recommendation can be represented as graph data with two graphs.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-本文模型"><a href="#3-本文模型" class="headerlink" title="3. 本文模型"></a>3. 本文模型</h2><p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g10b2rj8ulj31dq0ttqdl.jpg" alt="model"></p>
+<h3 id="3-1-用户模型"><a href="#3-1-用户模型" class="headerlink" title="3.1 用户模型"></a>3.1 用户模型</h3><h4 id="3-1-1-Item-Aggregation"><a href="#3-1-1-Item-Aggregation" class="headerlink" title="3.1.1 Item Aggregation"></a>3.1.1 Item Aggregation</h4><blockquote>
+<p>The purpose of item aggregation is to learn item-space user latent factor $h_{i}^{I}$ by considering items a user $u_{i}$ has interacted with and users’ opinions on these items.</p>
+</blockquote>
+<p>$$h^{I}<em>{i} = σ(W · Aggre</em>{items} ({x_{ia} ,∀a ∈ C(i)}) + b)$$</p>
+<ul>
+<li>$h^{I}_{i}$: item-space user latent factor</li>
+<li>$C(i)$: item-space user latent factor</li>
+<li>$x_{ia}$: a representation vector to denote opinion-aware interaction between $u_{i}$ and an item $v_{a}$</li>
+</ul>
+<blockquote>
+<p>The output of MLP is the opinion-aware representation of the interaction between $u_{i}$ and $v_{a}$,$x_{ia}$, as follows:</p>
+</blockquote>
+<p>$$x_{ia} = g_{v}([q_{a}⊕e_{r}])$$</p>
+<h4 id="3-1-2-Social-Aggregation"><a href="#3-1-2-Social-Aggregation" class="headerlink" title="3.1.2 Social Aggregation"></a>3.1.2 Social Aggregation</h4><blockquote>
+<p>与 Item Aggregation 做法类似</p>
+</blockquote>
+<h3 id="3-2-项目模型"><a href="#3-2-项目模型" class="headerlink" title="3.2 项目模型"></a>3.2 项目模型</h3><h4 id="3-2-1-User-Aggregation"><a href="#3-2-1-User-Aggregation" class="headerlink" title="3.2.1 User Aggregation"></a>3.2.1 User Aggregation</h4><blockquote>
+<p>与 Item Aggregation 做法类似</p>
+</blockquote>
+<h3 id="3-3-预测评分"><a href="#3-3-预测评分" class="headerlink" title="3.3 预测评分"></a>3.3 预测评分</h3><blockquote>
+<p>With the latent factors of users and items (i.e., $h_{i}$ and $z_{j}$ ), we can first concatenate them $[h_{i} ⊕ z_{j}]$ and then feed it into MLP for rating prediction as:</p>
+</blockquote>
+<p>$$g_{1} = [h_{i}  ⊕ z_{j}]$$</p>
+<p>$$g_{2} = σ(W_{2} · g_{1} + b_{2}) $$</p>
+<p>$$g_{l-1} = σ(W_{l} · g_{l-1} + b_{l}) $$</p>
+<p>$$r^{′}<em>{ij} = w^{T} · g</em>{l−1} $$</p>
+<ul>
+<li>where l is the index of a hidden layer, and $r^{′}<em>{ij}$ is the predicted rating from $u</em>{i}$ to $v_{j}$.</li>
+</ul>
+<h3 id="3-4-模型训练"><a href="#3-4-模型训练" class="headerlink" title="3.4 模型训练"></a>3.4 模型训练</h3><blockquote>
+<p><strong>Loss function as follows:</strong></p>
+</blockquote>
+<p>$$Loss = \frac{1}{2|O|} \sum_{i,j∈O} (r^{′}<em>{ij} − r</em>{ij})^{2}$$</p>
+<ul>
+<li><p>where $|O|$ is the number of observed ratings , and $r_{ij}$ is the ground truth rating assigned by the user i on the item j.</p>
+</li>
+<li><p>Optimizer: RMSprop</p>
+</li>
+<li><p>Overfitting problem: Dropout</p>
+</li>
+</ul>
+<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4. 实验"></a>4. 实验</h2><h3 id="4-1-数据集"><a href="#4-1-数据集" class="headerlink" title="4.1 数据集"></a>4.1 数据集</h3><ul>
+<li>Ciao</li>
+<li>Epinions</li>
+</ul>
+<h3 id="4-2-Baselines"><a href="#4-2-Baselines" class="headerlink" title="4.2 Baselines"></a>4.2 Baselines</h3><ul>
+<li>PMF</li>
+<li>SoRec</li>
+<li>SoReg</li>
+<li>SocialMF</li>
+<li>TrustMF</li>
+<li>NeuMF</li>
+<li>DeepSoR</li>
+<li>GCMC+SN</li>
+</ul>
+<h3 id="4-3-Result"><a href="#4-3-Result" class="headerlink" title="4.3 Result"></a>4.3 Result</h3><h4 id="4-3-1-Performance-Comparison-of-Recommender-Systems"><a href="#4-3-1-Performance-Comparison-of-Recommender-Systems" class="headerlink" title="4.3.1 Performance Comparison of Recommender Systems"></a>4.3.1 Performance Comparison of Recommender Systems</h4><p><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g11961foh9j31890e3n0y.jpg" alt="1"></p>
+<h4 id="4-3-2-Model-Analysis"><a href="#4-3-2-Model-Analysis" class="headerlink" title="4.3.2 Model Analysis"></a>4.3.2 Model Analysis</h4><ul>
+<li>Effect of Social Network and User Opinions</li>
+<li>Effect of Attention Mechanisms</li>
+<li>Effect of Embedding Size</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g119615jtbj31d00e8wgt.jpg" alt="2"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g119615b4uj31cl0ehju7.jpg" alt="3"><br><img src="https://ws1.sinaimg.cn/large/0061Dw64gy1g1196167voj31c90ek772.jpg" alt="4"></p>
+<h2 id="5-未来工作"><a href="#5-未来工作" class="headerlink" title="5. 未来工作"></a>5. 未来工作</h2><ul>
+<li>探索用户和项目之间的更丰富、复杂的属性</li>
+<li>考虑评分和社交关系的动态性</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">图神经网络</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-2019消费者人群画像—信用智能评分竞赛"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/03/12/2019%E6%B6%88%E8%B4%B9%E8%80%85%E4%BA%BA%E7%BE%A4%E7%94%BB%E5%83%8F%E2%80%94%E4%BF%A1%E7%94%A8%E6%99%BA%E8%83%BD%E8%AF%84%E5%88%86%E7%AB%9E%E8%B5%9B/"
+    >2019消费者人群画像—信用智能评分竞赛</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/12/2019%E6%B6%88%E8%B4%B9%E8%80%85%E4%BA%BA%E7%BE%A4%E7%94%BB%E5%83%8F%E2%80%94%E4%BF%A1%E7%94%A8%E6%99%BA%E8%83%BD%E8%AF%84%E5%88%86%E7%AB%9E%E8%B5%9B/" class="article-date">
+  <time datetime="2019-03-12T10:39:30.000Z" itemprop="datePublished">2019-03-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="消费者人群画像—信用智能评分竞赛"><a href="#消费者人群画像—信用智能评分竞赛" class="headerlink" title="消费者人群画像—信用智能评分竞赛"></a>消费者人群画像—信用智能评分竞赛</h1><h2 id="1-比赛介绍"><a href="#1-比赛介绍" class="headerlink" title="1. 比赛介绍"></a>1. 比赛介绍</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.datafountain.cn/competitions/337/details/data-evaluation">https://www.datafountain.cn/competitions/337/details/data-evaluation</a></li>
+</ul>
+<h2 id="2-参考代码"><a href="#2-参考代码" class="headerlink" title="2. 参考代码"></a>2. 参考代码</h2><h3 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedKFold</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</span><br><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> KFold</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> BayesianRidge</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> RepeatedKFold</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line">plt.rcParams[<span class="string">u&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;simhei&#x27;</span>]  <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>  <span class="comment">#用来正常显示负号</span></span><br><span class="line">pd.set_option(<span class="string">&#x27;display.max_columns&#x27;</span>, <span class="number">100</span>)  <span class="comment">#显示最大列数</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Input-data"><a href="#Input-data" class="headerlink" title="Input data"></a>Input data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data_path = <span class="string">&#x27;../input/&#x27;</span></span><br><span class="line">train_data = pd.read_csv(data_path + <span class="string">&#x27;train_dataset.csv&#x27;</span>)</span><br><span class="line">test_data = pd.read_csv(data_path + <span class="string">&#x27;test_dataset.csv&#x27;</span>)</span><br><span class="line">sample_sub = pd.read_csv(data_path + <span class="string">&#x27;submit_example.csv&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pre-processing"><a href="#Pre-processing" class="headerlink" title="Pre-processing"></a>Pre-processing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x_cols = [col <span class="keyword">for</span> col <span class="keyword">in</span> train_data.columns <span class="keyword">if</span> col <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">&#x27;信用分&#x27;</span>,<span class="string">&#x27;用户编码&#x27;</span>]]</span><br><span class="line">labels = []</span><br><span class="line">values = []</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_cols</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;用户实名制是否通过核实&#39;,
+ &#39;用户年龄&#39;,
+ &#39;是否大学生客户&#39;,
+ &#39;是否黑名单客户&#39;,
+ &#39;是否4G不健康客户&#39;,
+ &#39;用户网龄（月）&#39;,
+ &#39;用户最近一次缴费距今时长（月）&#39;,
+ &#39;缴费用户最近一次缴费金额（元）&#39;,
+ &#39;用户近6个月平均消费值（元）&#39;,
+ &#39;用户账单当月总费用（元）&#39;,
+ &#39;用户当月账户余额（元）&#39;,
+ &#39;缴费用户当前是否欠费缴费&#39;,
+ &#39;用户话费敏感度&#39;,
+ &#39;当月通话交往圈人数&#39;,
+ &#39;是否经常逛商场的人&#39;,
+ &#39;近三个月月均商场出现次数&#39;,
+ &#39;当月是否逛过福州仓山万达&#39;,
+ &#39;当月是否到过福州山姆会员店&#39;,
+ &#39;当月是否看电影&#39;,
+ &#39;当月是否景点游览&#39;,
+ &#39;当月是否体育场馆消费&#39;,
+ &#39;当月网购类应用使用次数&#39;,
+ &#39;当月物流快递类应用使用次数&#39;,
+ &#39;当月金融理财类应用使用总次数&#39;,
+ &#39;当月视频播放类应用使用次数&#39;,
+ &#39;当月飞机类应用使用次数&#39;,
+ &#39;当月火车类应用使用次数&#39;,
+ &#39;当月旅游资讯类应用使用次数&#39;]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#判断各列和信用分的相关性</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> x_cols:</span><br><span class="line">    labels.append(col)</span><br><span class="line">    values.append(</span><br><span class="line">        np.corrcoef(train_data[col].values, train_data[<span class="string">&#x27;信用分&#x27;</span>].values)[<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">corr_df = pd.DataFrame(&#123;<span class="string">&#x27;col_labels&#x27;</span>: labels, <span class="string">&#x27;corr_values&#x27;</span>: values&#125;)</span><br><span class="line">corr_df = corr_df.sort_values(by=<span class="string">&#x27;corr_values&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ind = np.arange(len(labels))</span><br><span class="line">width = <span class="number">0.5</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>, <span class="number">60</span>))</span><br><span class="line">rects = ax.barh(ind, np.array(corr_df.corr_values.values), color=<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">ax.set_yticks(ind)</span><br><span class="line">ax.set_yticklabels(corr_df.col_labels.values, rotation=<span class="string">&#x27;horizontal&#x27;</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;Correlation coefficient&#x27;</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;Correlation coeficient of the variables&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Text(0.5,1,&#39;Correlation coeficient of the variables&#39;)</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g107dg69uvj30ng2k5myw.jpg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#密度曲线</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_kde</span>(<span class="params">data</span>):</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">    data.plot(kind=<span class="string">&#x27;kde&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_his</span>(<span class="params">data</span>):</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">    sns.distplot(data.values, bins=<span class="number">50</span>, kde=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plot_kde(train_data[<span class="string">&#x27;信用分&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ws1.sinaimg.cn/large/006wCagogy1g107dg3uy3j30e409zdfw.jpg"></p>
+<h3 id="Feature-Engineering"><a href="#Feature-Engineering" class="headerlink" title="Feature Engineering"></a>Feature Engineering</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top up amount, 充值金额是整数，和小数，应该对应不同的充值途径？</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">produce_offline_feature</span>(<span class="params">train_data</span>):</span></span><br><span class="line">    train_data[<span class="string">&#x27;不同充值途径&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    train_data[<span class="string">&#x27;不同充值途径&#x27;</span>][(train_data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] %</span><br><span class="line">                          <span class="number">10</span> == <span class="number">0</span>) &amp; train_data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] != <span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> train_data</span><br><span class="line">train_data = produce_offline_feature(train_data)</span><br><span class="line">test_data = produce_offline_feature(test_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看importance，当月话费 和最近半年平均话费都很高，算一下当月/半年 --&gt;稳定性</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">produce_fee_rate</span>(<span class="params">train_data</span>):</span></span><br><span class="line">    train_data[<span class="string">&#x27;当前费用稳定性&#x27;</span>] = train_data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] / \</span><br><span class="line">        (train_data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>] + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 当月话费/当月账户余额</span></span><br><span class="line">    train_data[<span class="string">&#x27;用户余额比例&#x27;</span>] = train_data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] / \</span><br><span class="line">        (train_data[<span class="string">&#x27;用户当月账户余额（元）&#x27;</span>] + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> train_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_data = produce_offline_feature(train_data)</span><br><span class="line">test_data = produce_offline_feature(test_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取特征</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_features</span>(<span class="params">data</span>):</span></span><br><span class="line"></span><br><span class="line">    data.loc[data[<span class="string">&#x27;用户年龄&#x27;</span>] ==</span><br><span class="line">             <span class="number">0</span>, <span class="string">&#x27;用户年龄&#x27;</span>] = data[<span class="string">&#x27;用户年龄&#x27;</span>].mode()  <span class="comment"># mode()选出一组数据中众数，这里改为平均值</span></span><br><span class="line">    data.loc[data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] ==</span><br><span class="line">             <span class="number">0</span>, <span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] = data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>].mode()</span><br><span class="line">    data[<span class="string">&#x27;缴费金额是否能覆盖当月账单&#x27;</span>] = data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] - data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;最近一次缴费是否超过平均消费额&#x27;</span>] = data[<span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>] - data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;当月账单是否超过平均消费额&#x27;</span>] = data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] - data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 映射年龄</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">map_age</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">if</span> x &lt;= <span class="number">18</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">30</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">35</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">45</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">    data[<span class="string">&#x27;是否大学生_黑名单&#x27;</span>] = data[<span class="string">&#x27;是否大学生客户&#x27;</span>] + data[<span class="string">&#x27;是否黑名单客户&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否实名制_大学生&#x27;</span>] = data[<span class="string">&#x27;是否大学生客户&#x27;</span>] + data[<span class="string">&#x27;用户实名制是否通过核实&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否实名制_大学生_黑名单&#x27;</span>] = data[<span class="string">&#x27;是否黑名单客户&#x27;</span>] + data[<span class="string">&#x27;用户实名制是否通过核实&#x27;</span>] + data[<span class="string">&#x27;是否大学生客户&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否实名制_黑名单&#x27;</span>] = data[<span class="string">&#x27;是否黑名单客户&#x27;</span>] + data[<span class="string">&#x27;用户实名制是否通过核实&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] = data[<span class="string">&#x27;当月是否到过福州山姆会员店&#x27;</span>] + data[<span class="string">&#x27;当月是否逛过福州仓山万达&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>].map(<span class="keyword">lambda</span> x: <span class="number">1</span> <span class="keyword">if</span> x &gt;= <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_电影&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_体育馆&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_旅游&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_电影_体育馆&#x27;</span>] = data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_旅游_体育馆&#x27;</span>] = data[<span class="string">&#x27;当月是否景点游览&#x27;</span>] * data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    data[<span class="string">&#x27;是否_商场_旅游_体育馆&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>] * data[</span><br><span class="line">        <span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_电影_体育馆&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[</span><br><span class="line">        <span class="string">&#x27;当月是否体育场馆消费&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_体育馆_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[</span><br><span class="line">        <span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line">    data[<span class="string">&#x27;是否_商场_体育馆_电影_旅游&#x27;</span>] = data[<span class="string">&#x27;是否去过高档商场&#x27;</span>] * \</span><br><span class="line">        data[<span class="string">&#x27;当月是否体育场馆消费&#x27;</span>] * data[<span class="string">&#x27;当月是否看电影&#x27;</span>] * data[<span class="string">&#x27;当月是否景点游览&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    discretize_features = [</span><br><span class="line">        <span class="string">&#x27;交通类应用使用次数&#x27;</span>, <span class="string">&#x27;当月物流快递类应用使用次数&#x27;</span>, <span class="string">&#x27;当月飞机类应用使用次数&#x27;</span>, <span class="string">&#x27;当月火车类应用使用次数&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;当月旅游资讯类应用使用次数&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    data[<span class="string">&#x27;交通类应用使用次数&#x27;</span>] = data[<span class="string">&#x27;当月飞机类应用使用次数&#x27;</span>] + data[<span class="string">&#x27;当月火车类应用使用次数&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    data[<span class="string">&#x27;6个月平均占比总费用&#x27;</span>] = data[<span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>] / data[<span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">map_discretize</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">5</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">15</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">50</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">        <span class="keyword">elif</span> x &lt;= <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> discretize_features[:]:</span><br><span class="line">        data[col] = data[col].map(<span class="keyword">lambda</span> x: map_discretize(x))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_data = get_features(train_data)</span><br><span class="line">test_data = get_features(test_data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">base_process</span>(<span class="params">data</span>):</span></span><br><span class="line">    transform_value_feature = [</span><br><span class="line">        <span class="string">&#x27;用户年龄&#x27;</span>, <span class="string">&#x27;用户网龄（月）&#x27;</span>, <span class="string">&#x27;当月通话交往圈人数&#x27;</span>, <span class="string">&#x27;近三个月月均商场出现次数&#x27;</span>, <span class="string">&#x27;当月网购类应用使用次数&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;当月物流快递类应用使用次数&#x27;</span>, <span class="string">&#x27;当月金融理财类应用使用总次数&#x27;</span>, <span class="string">&#x27;当月视频播放类应用使用次数&#x27;</span>, <span class="string">&#x27;当月飞机类应用使用次数&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;当月火车类应用使用次数&#x27;</span>, <span class="string">&#x27;当月旅游资讯类应用使用次数&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    user_fea = [</span><br><span class="line">        <span class="string">&#x27;缴费用户最近一次缴费金额（元）&#x27;</span>, <span class="string">&#x27;用户近6个月平均消费值（元）&#x27;</span>, <span class="string">&#x27;用户账单当月总费用（元）&#x27;</span>, <span class="string">&#x27;用户当月账户余额（元）&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    log_features = [</span><br><span class="line">        <span class="string">&#x27;当月网购类应用使用次数&#x27;</span>, <span class="string">&#x27;当月金融理财类应用使用总次数&#x27;</span>, <span class="string">&#x27;当月物流快递类应用使用次数&#x27;</span>, <span class="string">&#x27;当月视频播放类应用使用次数&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="comment">#处理离散点</span></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> transform_value_feature + user_fea + log_features:</span><br><span class="line">        <span class="comment">#取出最高99.9%值</span></span><br><span class="line">        ulimit = np.percentile(train_data[col].values, <span class="number">99.9</span>)</span><br><span class="line">        <span class="comment">#取出最低0.1%值</span></span><br><span class="line">        llimit = np.percentile(train_data[col].values, <span class="number">0.1</span>)</span><br><span class="line">        train_data.loc[train_data[col] &gt; ulimit, col] = ulimit</span><br><span class="line">        train_data.loc[train_data[col] &lt; llimit, col] = llimit</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> user_fea + log_features:</span><br><span class="line">        data[col] = data[col].map(<span class="keyword">lambda</span> x: np.log1p(x))</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_data = base_process(train_data)</span><br><span class="line">test_data = base_process(test_data)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_importances</span>(<span class="params">feature_importance_df_</span>):</span></span><br><span class="line">    cols = feature_importance_df_[[</span><br><span class="line">        <span class="string">&quot;feature&quot;</span>, <span class="string">&quot;importance&quot;</span></span><br><span class="line">    ]].groupby(<span class="string">&quot;feature&quot;</span>).mean().sort_values(</span><br><span class="line">        by=<span class="string">&quot;importance&quot;</span>, ascending=<span class="literal">False</span>)[:<span class="number">40</span>].index</span><br><span class="line">    best_features = feature_importance_df_.loc[</span><br><span class="line">        feature_importance_df_.feature.isin(cols)]</span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>, <span class="number">10</span>))</span><br><span class="line">    sns.barplot(</span><br><span class="line">        x=<span class="string">&quot;importance&quot;</span>,</span><br><span class="line">        y=<span class="string">&quot;feature&quot;</span>,</span><br><span class="line">        data=best_features.sort_values(by=<span class="string">&quot;importance&quot;</span>, ascending=<span class="literal">False</span>))</span><br><span class="line">    plt.title(<span class="string">&#x27;LightGBM Features (avg over folds)&#x27;</span>)</span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#para</span></span><br><span class="line">params1 = &#123;</span><br><span class="line">    <span class="string">&#x27;learning_rate&#x27;</span>: <span class="number">0.01</span>,</span><br><span class="line">    <span class="string">&#x27;boosting_type&#x27;</span>: <span class="string">&#x27;gbdt&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;regression_l1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;metric&#x27;</span>: <span class="string">&#x27;mae&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;feature_fraction&#x27;</span>: <span class="number">0.6</span>,  <span class="comment">#如果设置为 0.8, 将会在每棵树训练之前选择 80% 的特征</span></span><br><span class="line">    <span class="string">&#x27;bagging_fraction&#x27;</span>: <span class="number">0.8</span>,  <span class="comment"># 它将在不进行重采样的情况下随机选择部分数据</span></span><br><span class="line">    <span class="string">&#x27;bagging_freq&#x27;</span>: <span class="number">2</span>,  <span class="comment">#意味着每2次迭代执行bagging</span></span><br><span class="line">    <span class="string">&#x27;num_leaves&#x27;</span>: <span class="number">31</span>,</span><br><span class="line">    <span class="string">&#x27;verbose&#x27;</span>: <span class="number">-1</span>,</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l2&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l1&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;num_thread&#x27;</span>: <span class="number">8</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#para</span></span><br><span class="line">params2 = &#123;</span><br><span class="line">    <span class="string">&#x27;learning_rate&#x27;</span>: <span class="number">0.01</span>,</span><br><span class="line">    <span class="string">&#x27;boosting_type&#x27;</span>: <span class="string">&#x27;gbdt&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;regression_l2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;metric&#x27;</span>: <span class="string">&#x27;mae&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;feature_fraction&#x27;</span>: <span class="number">0.6</span>,  <span class="comment">#如果设置为 0.8, 将会在每棵树训练之前选择 80% 的特征</span></span><br><span class="line">    <span class="string">&#x27;bagging_fraction&#x27;</span>: <span class="number">0.8</span>,  <span class="comment"># 它将在不进行重采样的情况下随机选择部分数据</span></span><br><span class="line">    <span class="string">&#x27;bagging_freq&#x27;</span>: <span class="number">2</span>,  <span class="comment">#意味着每2次迭代执行bagging</span></span><br><span class="line">    <span class="string">&#x27;num_leaves&#x27;</span>: <span class="number">31</span>,</span><br><span class="line">    <span class="string">&#x27;verbose&#x27;</span>: <span class="number">-1</span>,</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l2&#x27;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;lambda_l1&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;num_thread&#x27;</span>: <span class="number">8</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">cv_pred_all1 = <span class="number">0</span></span><br><span class="line">en_amount = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">oof_lgb1 = np.zeros(len(train_data))</span><br><span class="line">prediction_lgb1 = np.zeros(len(test_data))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> seed <span class="keyword">in</span> range(en_amount):</span><br><span class="line">    NFOLDS = <span class="number">5</span></span><br><span class="line">    train_label = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    kfold = KFold(n_splits=NFOLDS, shuffle=<span class="literal">True</span>, random_state=seed)</span><br><span class="line">    kf = kfold.split(train_data, train_label)</span><br><span class="line"></span><br><span class="line">    train_data_use = train_data.drop([<span class="string">&#x27;用户编码&#x27;</span>, <span class="string">&#x27;信用分&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">    test_data_use = test_data.drop([<span class="string">&#x27;用户编码&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv_pred = np.zeros(test_data.shape[<span class="number">0</span>])</span><br><span class="line">    valid_best_l2_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    feature_importance_df = pd.DataFrame()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, (train_fold, validate) <span class="keyword">in</span> enumerate(kf):</span><br><span class="line">        print(<span class="string">&#x27;fold: &#x27;</span>, i, <span class="string">&#x27; training&#x27;</span>)</span><br><span class="line">        X_train, X_validate, label_train, label_validate = \</span><br><span class="line">        train_data_use.iloc[train_fold, :], train_data_use.iloc[validate, :], \</span><br><span class="line">        train_label[train_fold], train_label[validate]</span><br><span class="line">        dtrain = lgb.Dataset(X_train, label_train)</span><br><span class="line">        dvalid = lgb.Dataset(X_validate, label_validate, reference=dtrain)</span><br><span class="line">        bst = lgb.train(</span><br><span class="line">            params1,</span><br><span class="line">            dtrain,</span><br><span class="line">            num_boost_round=<span class="number">10000</span>,</span><br><span class="line">            valid_sets=dvalid,</span><br><span class="line">            verbose_eval=<span class="number">-1</span>,</span><br><span class="line">            early_stopping_rounds=<span class="number">250</span>)</span><br><span class="line">        cv_pred += bst.predict(test_data_use, num_iteration=bst.best_iteration)</span><br><span class="line">        valid_best_l2_all += bst.best_score[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;l1&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        oof_lgb1[validate] = bst.predict(</span><br><span class="line">            X_validate, num_iteration=bst.best_iteration)</span><br><span class="line">        prediction_lgb1 += bst.predict(</span><br><span class="line">            test_data_use, num_iteration=bst.best_iteration) / kfold.n_splits</span><br><span class="line"></span><br><span class="line">        fold_importance_df = pd.DataFrame()</span><br><span class="line">        fold_importance_df[<span class="string">&quot;feature&quot;</span>] = list(X_train.columns)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;importance&quot;</span>] = bst.feature_importance(</span><br><span class="line">            importance_type=<span class="string">&#x27;split&#x27;</span>, iteration=bst.best_iteration)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;fold&quot;</span>] = count + <span class="number">1</span></span><br><span class="line">        feature_importance_df = pd.concat(</span><br><span class="line">            [feature_importance_df, fold_importance_df], axis=<span class="number">0</span>)</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv_pred /= NFOLDS</span><br><span class="line">    valid_best_l2_all /= NFOLDS</span><br><span class="line"></span><br><span class="line">    cv_pred_all1 += cv_pred</span><br><span class="line">cv_pred_all1 /= en_amount</span><br><span class="line">prediction_lgb1 /= en_amount</span><br><span class="line">print(<span class="string">&#x27;cv score1 for valid is: &#x27;</span>, <span class="number">1</span> / (<span class="number">1</span> + valid_best_l2_all))</span><br></pre></td></tr></table></figure>
+
+<pre><code>fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3874]    valid_0&#39;s l1: 14.7271
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3908]    valid_0&#39;s l1: 14.7613
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3308]    valid_0&#39;s l1: 14.5285
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[5434]    valid_0&#39;s l1: 14.5385
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3310]    valid_0&#39;s l1: 14.73
+fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3939]    valid_0&#39;s l1: 14.6399
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2806]    valid_0&#39;s l1: 14.6524
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4375]    valid_0&#39;s l1: 14.5624
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4439]    valid_0&#39;s l1: 14.7281
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4375]    valid_0&#39;s l1: 14.7686
+fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4424]    valid_0&#39;s l1: 14.7947
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[5509]    valid_0&#39;s l1: 14.8132
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2970]    valid_0&#39;s l1: 14.4896
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4146]    valid_0&#39;s l1: 14.6055
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3937]    valid_0&#39;s l1: 14.5792
+cv score1 for valid is:  0.06387148777659804</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">cv_pred_all2 = <span class="number">0</span></span><br><span class="line">en_amount = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">oof_lgb1 = np.zeros(len(train_data))</span><br><span class="line">prediction_lgb2 = np.zeros(len(test_data))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> seed <span class="keyword">in</span> range(en_amount):</span><br><span class="line">    NFOLDS = <span class="number">5</span></span><br><span class="line">    train_label = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    kfold = KFold(n_splits=NFOLDS, shuffle=<span class="literal">True</span>, random_state=seed)</span><br><span class="line">    kf = kfold.split(train_data, train_label)</span><br><span class="line"></span><br><span class="line">    train_data_use = train_data.drop([<span class="string">&#x27;用户编码&#x27;</span>, <span class="string">&#x27;信用分&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">    test_data_use = test_data.drop([<span class="string">&#x27;用户编码&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv_pred = np.zeros(test_data.shape[<span class="number">0</span>])</span><br><span class="line">    valid_best_l2_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    feature_importance_df = pd.DataFrame()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, (train_fold, validate) <span class="keyword">in</span> enumerate(kf):</span><br><span class="line">        print(<span class="string">&#x27;fold: &#x27;</span>, i, <span class="string">&#x27; training&#x27;</span>)</span><br><span class="line">        X_train, X_validate, label_train, label_validate = \</span><br><span class="line">        train_data_use.iloc[train_fold, :], train_data_use.iloc[validate, :], \</span><br><span class="line">        train_label[train_fold], train_label[validate]</span><br><span class="line">        dtrain = lgb.Dataset(X_train, label_train)</span><br><span class="line">        dvalid = lgb.Dataset(X_validate, label_validate, reference=dtrain)</span><br><span class="line">        bst = lgb.train(</span><br><span class="line">            params2,</span><br><span class="line">            dtrain,</span><br><span class="line">            num_boost_round=<span class="number">10000</span>,</span><br><span class="line">            valid_sets=dvalid,</span><br><span class="line">            verbose_eval=<span class="number">-1</span>,</span><br><span class="line">            early_stopping_rounds=<span class="number">250</span>)</span><br><span class="line">        cv_pred += bst.predict(test_data_use, num_iteration=bst.best_iteration)</span><br><span class="line">        valid_best_l2_all += bst.best_score[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;l1&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        oof_lgb1[validate] = bst.predict(</span><br><span class="line">            X_validate, num_iteration=bst.best_iteration)</span><br><span class="line">        prediction_lgb2 += bst.predict(</span><br><span class="line">            test_data_use, num_iteration=bst.best_iteration) / kfold.n_splits</span><br><span class="line"></span><br><span class="line">        fold_importance_df = pd.DataFrame()</span><br><span class="line">        fold_importance_df[<span class="string">&quot;feature&quot;</span>] = list(X_train.columns)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;importance&quot;</span>] = bst.feature_importance(</span><br><span class="line">            importance_type=<span class="string">&#x27;split&#x27;</span>, iteration=bst.best_iteration)</span><br><span class="line">        fold_importance_df[<span class="string">&quot;fold&quot;</span>] = count + <span class="number">1</span></span><br><span class="line">        feature_importance_df = pd.concat(</span><br><span class="line">            [feature_importance_df, fold_importance_df], axis=<span class="number">0</span>)</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv_pred /= NFOLDS</span><br><span class="line">    valid_best_l2_all /= NFOLDS</span><br><span class="line"></span><br><span class="line">    cv_pred_all2 += cv_pred</span><br><span class="line">cv_pred_all2 /= en_amount</span><br><span class="line">prediction_lgb2 /= en_amount</span><br><span class="line">print(<span class="string">&#x27;cv2 score for valid is: &#x27;</span>, <span class="number">1</span> / (<span class="number">1</span> + valid_best_l2_all))</span><br></pre></td></tr></table></figure>
+
+<pre><code>fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4423]    valid_0&#39;s l1: 14.7215
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3077]    valid_0&#39;s l1: 14.7534
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3277]    valid_0&#39;s l1: 14.5732
+fold:  3  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[4180]    valid_0&#39;s l1: 14.5316
+fold:  4  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[3139]    valid_0&#39;s l1: 14.7765
+fold:  0  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2928]    valid_0&#39;s l1: 14.5982
+fold:  1  training
+Training until validation scores don&#39;t improve for 250 rounds.
+Early stopping, best iteration is:
+[2344]    valid_0&#39;s l1: 14.7204
+fold:  2  training
+Training until validation scores don&#39;t improve for 250 rounds.</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display_importances(feature_importance_df)</span><br></pre></td></tr></table></figure>
+
+<h3 id="XGB-训练及预测"><a href="#XGB-训练及预测" class="headerlink" title="XGB 训练及预测"></a>XGB 训练及预测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">xgb_params = &#123;<span class="string">&#x27;eta&#x27;</span>: <span class="number">0.005</span>, <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;subsample&#x27;</span>: <span class="number">0.8</span>, <span class="string">&#x27;colsample_bytree&#x27;</span>: <span class="number">0.8</span>,</span><br><span class="line">              <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;reg:linear&#x27;</span>, <span class="string">&#x27;eval_metric&#x27;</span>: <span class="string">&#x27;mae&#x27;</span>, <span class="string">&#x27;silent&#x27;</span>: <span class="literal">True</span>, <span class="string">&#x27;nthread&#x27;</span>: <span class="number">20</span>&#125;</span><br><span class="line">cv_pred_allxgb = <span class="number">0</span></span><br><span class="line">en_amount = <span class="number">3</span></span><br><span class="line">oof_xgb1 = np.zeros(len(train_data))</span><br><span class="line">prediction_xgb1 = np.zeros(len(test_data))</span><br><span class="line"><span class="keyword">for</span> seed <span class="keyword">in</span> range(en_amount):</span><br><span class="line">    NFOLDS = <span class="number">5</span></span><br><span class="line">    train_label = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line">    kfold = KFold(n_splits=NFOLDS, shuffle=<span class="literal">True</span>, random_state=seed+<span class="number">2019</span>)</span><br><span class="line">    kf = kfold.split(train_data, train_label)</span><br><span class="line"></span><br><span class="line">    train_data_use = train_data.drop([<span class="string">&#x27;用户编码&#x27;</span>, <span class="string">&#x27;信用分&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">    test_data_use = test_data.drop([<span class="string">&#x27;用户编码&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv_pred = np.zeros(test_data.shape[<span class="number">0</span>])</span><br><span class="line">    valid_best_l2_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    feature_importance_df = pd.DataFrame()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, (train_fold, validate) <span class="keyword">in</span> enumerate(kf):</span><br><span class="line">        print(<span class="string">&#x27;fold: &#x27;</span>, i, <span class="string">&#x27; training&#x27;</span>)</span><br><span class="line">        X_train, X_validate, label_train, label_validate = train_data_use.iloc[train_fold,</span><br><span class="line">                                                                               :], train_data_use.iloc[validate, :], train_label[train_fold], train_label[validate]</span><br><span class="line">        dtrain = xgb.DMatrix(X_train, label_train)</span><br><span class="line">        dvalid = xgb.DMatrix(X_validate, label_validate)</span><br><span class="line">        watchlist = [(dtrain, <span class="string">&#x27;train&#x27;</span>), (dvalid, <span class="string">&#x27;valid_data&#x27;</span>)]</span><br><span class="line">        bst = xgb.train(dtrain=dtrain, num_boost_round=<span class="number">10000</span>, evals=watchlist,</span><br><span class="line">                        early_stopping_rounds=<span class="number">100</span>, verbose_eval=<span class="number">300</span>, params=xgb_params)</span><br><span class="line">        cv_pred += bst.predict(xgb.DMatrix(test_data_use),</span><br><span class="line">                               ntree_limit=bst.best_ntree_limit)</span><br><span class="line">        oof_xgb1[validate] = bst.predict(xgb.DMatrix(</span><br><span class="line">            X_validate), ntree_limit=bst.best_ntree_limit)</span><br><span class="line">        prediction_xgb1 += bst.predict(xgb.DMatrix(test_data_use),</span><br><span class="line">                                       ntree_limit=bst.best_ntree_limit)/kfold.n_splits</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv_pred /= NFOLDS</span><br><span class="line">    cv_pred_allxgb += cv_pred</span><br><span class="line">cv_pred_allxgb /= en_amount</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prediction_xgb1 /= en_amount</span><br><span class="line">prediction_lgb_all = (prediction_lgb1 + prediction_lgb2) / <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将lgb和xgb的结果进行stacking</span></span><br><span class="line">train_stack = np.vstack([oof_lgb1, oof_xgb1]).transpose()</span><br><span class="line">test_stack = np.vstack([prediction_lgb_all, prediction_xgb1]).transpose()</span><br><span class="line"></span><br><span class="line">folds_stack = RepeatedKFold(n_splits=<span class="number">5</span>, n_repeats=<span class="number">2</span>, random_state=<span class="number">2019</span>)</span><br><span class="line">oof_stack = np.zeros(train_stack.shape[<span class="number">0</span>])</span><br><span class="line">predictions = np.zeros(test_stack.shape[<span class="number">0</span>])</span><br><span class="line">target = train_data[<span class="string">&#x27;信用分&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds_stack.split(train_stack, target)):</span><br><span class="line">    print(<span class="string">&quot;fold &#123;&#125;&quot;</span>.format(fold_))</span><br><span class="line">    trn_data, trn_y = train_stack[trn_idx], target.iloc[trn_idx].values</span><br><span class="line">    val_data, val_y = train_stack[val_idx], target.iloc[val_idx].values</span><br><span class="line"></span><br><span class="line">    clf_3 = BayesianRidge()</span><br><span class="line">    clf_3.fit(trn_data, trn_y)</span><br><span class="line"></span><br><span class="line">    oof_stack[val_idx] = clf_3.predict(val_data)</span><br><span class="line">    predictions += clf_3.predict(test_stack) / <span class="number">10</span></span><br><span class="line"></span><br><span class="line">mean_absolute_error(target.values, oof_stack)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Submit"><a href="#Submit" class="headerlink" title="Submit"></a>Submit</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1 = test_data[[<span class="string">&#x27;用户编码&#x27;</span>]]</span><br><span class="line">test_data_sub1[<span class="string">&#x27;score&#x27;</span>] =  predictions</span><br><span class="line">test_data_sub1.columns = [<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]</span><br><span class="line"><span class="comment"># test_data_sub1[&#x27;score1&#x27;] = (cv_pred_all1 + cv_pred_all2) / 2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1.head()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1[<span class="string">&#x27;score&#x27;</span>] = test_data_sub1[<span class="string">&#x27;score&#x27;</span>].apply(<span class="keyword">lambda</span> x: int(np.round(x)))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1.head()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_data_sub1[[<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]].to_csv(<span class="string">&#x27;../output/result.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-HyperOptSklearn调参"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/03/12/HyperOptSklearn%E8%B0%83%E5%8F%82/"
+    >HyperOptSklearn调参</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/12/HyperOptSklearn%E8%B0%83%E5%8F%82/" class="article-date">
+  <time datetime="2019-03-12T10:37:45.000Z" itemprop="datePublished">2019-03-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="1-机器学习调参工具之HyperOptSklearn"><a href="#1-机器学习调参工具之HyperOptSklearn" class="headerlink" title="1. 机器学习调参工具之HyperOptSklearn"></a>1. 机器学习调参工具之HyperOptSklearn</h1><h2 id="1-1-示例代码："><a href="#1-1-示例代码：" class="headerlink" title="1.1 示例代码："></a>1.1 示例代码：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hpsklearn <span class="keyword">import</span> HyperoptEstimator, any_classifier, any_preprocessing</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> hyperopt <span class="keyword">import</span> tpe</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+<pre><code>WARN: OMP_NUM_THREADS=None =&gt;
+... If you are using openblas if you are using openblas set OMP_NUM_THREADS=1 or risk subprocess calls hanging indefinitely</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Download the data and split into training and test sets</span></span><br><span class="line">iris = load_iris()</span><br><span class="line">X = iris.data</span><br><span class="line">y = iris.target</span><br><span class="line">test_size = int(<span class="number">0.2</span> * len(y))</span><br><span class="line">np.random.seed(<span class="number">13</span>)</span><br><span class="line">indices = np.random.permutation(len(X))</span><br><span class="line">X_train = X[indices[:-test_size]]</span><br><span class="line">y_train = y[indices[:-test_size]]</span><br><span class="line">X_test = X[indices[-test_size:]]</span><br><span class="line">y_test = y[indices[-test_size:]]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Instantiate a HyperoptEstimator with the search space and number of evaluations</span></span><br><span class="line">estim = HyperoptEstimator(classifier=any_classifier(<span class="string">&#x27;my_clf&#x27;</span>),</span><br><span class="line">                          preprocessing=any_preprocessing(<span class="string">&#x27;my_pre&#x27;</span>),</span><br><span class="line">                          algo=tpe.suggest,</span><br><span class="line">                          max_evals=<span class="number">100</span>,</span><br><span class="line">                          trial_timeout=<span class="number">120</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Search the hyperparameter space based on the data</span></span><br><span class="line">estim.fit( X_train, y_train )</span><br></pre></td></tr></table></figure>
+
+<pre><code>100%|██████████| 1/1 [00:00&lt;00:00,  1.59it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.03it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.80it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.28it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  3.07it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  7.68it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00, 12.13it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00, 12.90it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.88it/s, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00, 13.00it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.57it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00, 13.18it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00, 12.58it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.96it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00, 15.72it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.13it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.16it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.33it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.97it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.35it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:02&lt;00:00,  2.89s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.30it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.56it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:02&lt;00:00,  2.29s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.43it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.32it/s, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00,  6.31it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:03&lt;00:00,  3.20s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.44it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.14it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:03&lt;00:00,  3.01s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.74it/s, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00,  8.37it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:03&lt;00:00,  3.17s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.19s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.40it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.44it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.41s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.89s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.26it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.86it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.03it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.19s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.23it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.15s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.60it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.46it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.91it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  4.77it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.09it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.77it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.56it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.10s/it, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00,  7.84it/s, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00,  6.07it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.03it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  3.08it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.88it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  3.65it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.19it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:02&lt;00:00,  2.11s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.03s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  2.00it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  4.24it/s, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00,  8.10it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.05it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:02&lt;00:00,  2.37s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  4.22it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.32s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.87it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.92it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.34s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.85it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  4.07it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.56it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.04it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.60it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.98it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.93it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.00s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.08it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.30it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  9.02it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  4.11it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  6.58it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.87it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  7.09it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.95it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  7.00it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.31s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.54s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.34it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  1.93it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  3.88it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:01&lt;00:00,  1.48s/it, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:02&lt;00:00,  2.27s/it, best loss: 0.04166666666666663]
+  0%|          | 0/1 [00:00&lt;?, ?it/s, best loss: ?]
+
+/home/hadoop/anaconda3/lib/python3.6/site-packages/sklearn/linear_model/stochastic_gradient.py:117: DeprecationWarning: n_iter parameter is deprecated in 0.19 and will be removed in 0.21. Use max_iter and tol instead.
+  DeprecationWarning)
+
+
+
+100%|██████████| 1/1 [00:00&lt;00:00,  7.80it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  8.75it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  5.19it/s, best loss: 0.04166666666666663]
+100%|██████████| 1/1 [00:00&lt;00:00,  7.03it/s, best loss: 0.04166666666666663]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Show the results</span></span><br><span class="line">print(estim.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.0</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print( estim.best_model() )</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;learner&#39;: ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion=&#39;gini&#39;,
+           max_depth=4, max_features=None, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=590, n_jobs=1,
+           oob_score=False, random_state=0, verbose=False,
+           warm_start=False), &#39;preprocs&#39;: (MinMaxScaler(copy=True, feature_range=(0.0, 1.0)),), &#39;ex_preprocs&#39;: ()&#125;</code></pre>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-HyperOpt调参"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/03/12/HyperOpt%E8%B0%83%E5%8F%82/"
+    >HyperOpt调参</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/03/12/HyperOpt%E8%B0%83%E5%8F%82/" class="article-date">
+  <time datetime="2019-03-12T10:37:21.000Z" itemprop="datePublished">2019-03-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="1-机器学习调参工具之HyperOpt"><a href="#1-机器学习调参工具之HyperOpt" class="headerlink" title="1. 机器学习调参工具之HyperOpt"></a>1. 机器学习调参工具之HyperOpt</h1><h2 id="1-1-示例代码："><a href="#1-1-示例代码：" class="headerlink" title="1.1 示例代码："></a>1.1 示例代码：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hyperopt <span class="keyword">import</span> hp, fmin, rand, tpe, space_eval, anneal, partial</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义目标函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">q</span> (<span class="params">args</span>) :</span></span><br><span class="line">    x, y = args</span><br><span class="line">    <span class="keyword">return</span> x ** <span class="number">2</span> + y ** <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义参数空间</span></span><br><span class="line">space = [hp.uniform(<span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>, <span class="number">1</span>), hp.normal(<span class="string">&#x27;y&#x27;</span>, <span class="number">0</span>, <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定搜索算法</span></span><br><span class="line"><span class="comment"># algo指定搜索算法，目前支持以下算法：</span></span><br><span class="line"><span class="comment"># ①随机搜索(hyperopt.rand.suggest)</span></span><br><span class="line"><span class="comment"># ②模拟退火(hyperopt.anneal.suggest)</span></span><br><span class="line"><span class="comment"># ③TPE算法（hyperopt.tpe.suggest，算法全称为Tree-structured Parzen Estimator Approach）</span></span><br><span class="line"></span><br><span class="line">algo = partial(anneal.suggest,)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 寻找最佳匹配的space,使fn的函数返回值最小</span></span><br><span class="line">best = fmin(q, space, algo=algo,max_evals=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>100%|██████████| 100/100 [00:00&lt;00:00, 1026.67it/s, best loss: 7.504195016189939e-06]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(best)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;x&#39;: 0.002299082182183151, &#39;y&#39;: 0.0014894348377011664&#125;</code></pre>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
   
 </section>
 </div>
@@ -214,7 +1191,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2020
         <i class="ri-heart-fill heart_icon"></i> John Doe
       </li>
     </ul>
@@ -273,7 +1250,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+    <a href="/"><img src="/images/logo.png" alt="Z2WNB"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -299,7 +1276,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+      <a class="nav-item-link" href="/photos">摄影</a>
     </li>
     
     <li class="nav-item">
@@ -307,7 +1284,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/2019/about">关于我</a>
+      <a class="nav-item-link" href="/about">关于我</a>
     </li>
     
   </ul>
@@ -350,13 +1327,13 @@
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <img class="reward-img" src="/images/alipay.jpg">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <img class="reward-img" src="/images/wechat.jpg">
       <span class="reward-type">微信</span>
     </div>
     
@@ -501,6 +1478,10 @@
 
 <!-- ClickBoom2 -->
 
+
+<script src="/js/clickBoom2.js"></script>
+
+
 <!-- CodeCopy -->
 
 
@@ -563,6 +1544,10 @@
 
 
 <!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
 
 
     
